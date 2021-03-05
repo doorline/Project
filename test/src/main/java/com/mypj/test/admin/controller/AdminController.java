@@ -1,10 +1,13 @@
 package com.mypj.test.admin.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -18,8 +21,13 @@ public class AdminController {
 	//리스트 화면 출력
 	@RequestMapping("list")
 	public String list(Model model) {
-		service = new adminListService();
-		service.execute(model);
+//		service = new adminListService();
+//		service.execute(model);
+//		return "/admin/list";
+		List<ProductDTO> list = productService.list();
+		
+		model.addAllAttributes("dtos", list);
+		
 		return "/admin/list";
 	}
 	
