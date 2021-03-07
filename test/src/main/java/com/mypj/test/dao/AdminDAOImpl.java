@@ -17,31 +17,31 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public List<ProductDTO> productList() {
-		return sqlSession.selectList("admin.listAll);
+		return sqlSession.selectList("admin.listAll");
 	}
 
 	@Override
-	public ProductDTO productDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO productDetail(int pCode) {
+		
+		return sqlSession.selectOne("admin.productDetail");
 	}
 
 	@Override
 	public void upload(ProductDTO dto) {
-		// TODO Auto-generated method stub
+		sqlSession.insert("admin.upload", dto);
 		
 	}
 
 	@Override
 	public void modify(ProductDTO dto) {
-		// TODO Auto-generated method stub
+		sqlSession.update("admin.modify", dto);
 		
 	}
 
-	@Override
-	public ProductDTO selectProductByPCode(int pCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public ProductDTO selectProductByPCode(int pCode) {
+//		
+//		return sqlSession.selectOne("admin.productDetail");
+//	}
 
 }
