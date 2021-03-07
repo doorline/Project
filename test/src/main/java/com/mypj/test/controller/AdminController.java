@@ -1,7 +1,9 @@
-package com.mypj.test.admin.controller;
+package com.mypj.test.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -9,23 +11,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mypj.test.service.AdminService;
+
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
 	
-	IService service;
-	SqlSession sqlSession;
+//	IService service;
+//	SqlSession sqlSession;
+	
+	@Inject
+	AdminService adminService;
 	
 	//기능 upload(insert),list,delete,update(modify),uphit, detailView
 	
 	//리스트 화면 출력
 	@RequestMapping("list")
 	public String list(Model model) {
-//		service = new adminListService();
-//		service.execute(model);
-//		return "/admin/list";
-		List<ProductDTO> list = productService.list();
-		
+
+		List<ProductDTO> list = adminService.listAll();		
 		model.addAllAttributes("dtos", list);
 		
 		return "/admin/list";
@@ -39,43 +43,34 @@ public class AdminController {
 	
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping("upload")
-	public String upload(Model model, HttpServletRequest request) {
-		//uploadView form에서 작성한 내용 request객체에 받아옴
-		model.addAttribute("request", request);		
-		service = new adminUploadService();
-		service.execute(model);
+	public String upload(ProductDTO dto) throws Exception{
+
+		adminService.upload(dto);
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 	
 	//수정을 위한 detailView
-	@RequestMapping("detailView")
-	public String upload(Model model, HttpServletRequest request) {
+	@RequestMapping("detailView/{pCode}")
+	public String detailView(Model model, HttpServletRequest request) {
 		//url에 pcode 받아오기
-		String pCode = request.getParameter("pCode");		
-		model.addAttribute("pCode", pCode);		
-		service = new adminDetailViewService();
-		service.execute(model);
+		int pCode = Integer.parseInt(request.getParameter("pCode"));
+		model.addAttribute("dto", adminService.productDetail(pCode));
 		
 		return "/admin/detailView";
 	}
 	//detailView에서 수정버튼 누르면 update되는 서비스
-	@RequestMapping("modify")
-	public String upload(Model model, HttpServletRequest request) {
-		//upload랑 비슷하게 작성
-		model.addAttribute("request", request);		
-		service = new adminModifyService();
-		service.execute(model);
-		return "redirect:/admin/list"; //또는 다른 화면
+	@RequestMapping("modify/{pCode}")
+	public String upload(ProductDTO dto) {		
+		adminService.modify(dto);
+		return "redirect:/admin/detailView/"+dto.getPcode(); //또는 다른 화면
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
 	@RequestMapping("delete")
-	public String upload(Model model, HttpServletRequest request) {
+	public String delete(HttpServletRequest request) {
 		//url에서 pcode 받아오기
-		String pCode = request.getParameter("pCode");
-		model.addAttribute("pCode", pCode);		
-		service = new adminDeleteService();
-		service.execute(model);
+		int pCode = Integer.parseInt(request.getParameter("pCode"));
+		adminService.delete(pCode);
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 }
