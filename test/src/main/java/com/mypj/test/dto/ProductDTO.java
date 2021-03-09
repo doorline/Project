@@ -8,6 +8,8 @@ public class ProductDTO {
 	public String aId;
 	public int pUphit;
 	
+	//dName, dType, dUploadDate에 대한 DTO 추가
+	
 	@Override
 	public String toString() {
 		return "AdminDTO [pCode=" + pCode + ", kCode=" + kCode + ", tCode=" + tCode + ", pName=" + pName + ", aId="

@@ -14,7 +14,7 @@
 	
 	<insert id="upload">
 		insert into product (pCode, kCode, tCode, pName, aId, pUphit) 
-			values (#{pCode}, #{kCode}, #{tCode}, #{pName}, #{aId}, 0)	
+			values (#{product_SEQ.nextval}, #{kCode}, #{tCode}, #{pName}, #{aId}, 0)	
 	</insert>
 	
 	<update id="modify">
