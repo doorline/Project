@@ -20,7 +20,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<ProductDTO> productList() {
+	public List<ProductDTO> listAll() {
 		return sqlSession.selectList("admin.listAll");
 	}
 
