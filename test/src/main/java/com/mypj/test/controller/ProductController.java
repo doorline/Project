@@ -10,17 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mypj.test.dto.ProductDTO;
-import com.mypj.test.service.AdminService;
+import com.mypj.test.service.ProductService;
 
 @Controller
 @RequestMapping("/admin/*")
-public class AdminController {
+public class ProductController {
 	
 //	IService service;
 //	SqlSession sqlSession;
 	
 	@Inject
-	AdminService adminService;
+	ProductService adminService;
 	
 	//기능 upload(insert),list,delete,update(modify),uphit, detailView
 	
@@ -67,6 +67,7 @@ public class AdminController {
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
 	@RequestMapping("delete")
 	public String delete(HttpServletRequest request) {
+		//메소드 파라미터에 어노테이션 쓰는걸로
 		//url에서 pcode 받아오기
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
 		adminService.delete(pCode);

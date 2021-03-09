@@ -3,7 +3,7 @@ package com.mypj.test.dao;
 import java.util.List;
 import com.mypj.test.dto.ProductDTO;
 
-public interface AdminDAO {
+public interface ProductDAO {
 	//관리자가 product를 CRUD하는 기능 작성
 	
 	//list
@@ -18,4 +18,6 @@ public interface AdminDAO {
 //	public ProductDTO selectProductByPCode(int pCode);
 	//delete
 	public void delete(int pCode);
+	//파일업로드용 메소드 작성
+	
 }

@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mypj.test.dto.ProductDTO;
 
-public class AdminDAOImpl implements AdminDAO {
+public class ProductDAOImpl implements ProductDAO {
 	
 	@Inject
 	SqlSession sqlSession;
