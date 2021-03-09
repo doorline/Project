@@ -1,8 +1,12 @@
 package com.mypj.test.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+
+import com.mypj.test.dto.ProductDTO;
 
 public class AdminDAOImpl implements AdminDAO {
 	

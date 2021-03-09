@@ -1,6 +1,5 @@
 package com.mypj.test.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.mypj.test.dto.ProductDTO;
 import com.mypj.test.service.AdminService;
 
 @Controller
@@ -30,7 +29,7 @@ public class AdminController {
 	public String list(Model model) {
 
 		List<ProductDTO> list = adminService.listAll();		
-		model.addAllAttributes("dtos", list);
+		model.addAttribute("dtos", list);
 		
 		return "/admin/list";
 	}
@@ -60,9 +59,9 @@ public class AdminController {
 	}
 	//detailView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify/{pCode}")
-	public String upload(ProductDTO dto) {		
+	public String modify(ProductDTO dto) {		
 		adminService.modify(dto);
-		return "redirect:/admin/detailView/"+dto.getPcode(); //또는 다른 화면
+		return "redirect:/admin/detailView/"+dto.getpCode(); //또는 다른 화면
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행

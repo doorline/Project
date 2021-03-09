@@ -1,5 +1,8 @@
 package com.mypj.test.dao;
 
+import java.util.List;
+import com.mypj.test.dto.ProductDTO;
+
 public interface AdminDAO {
 	//관리자가 product를 CRUD하는 기능 작성
 	
