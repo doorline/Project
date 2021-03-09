@@ -7,7 +7,7 @@ public interface AdminDAO {
 	//관리자가 product를 CRUD하는 기능 작성
 	
 	//list
-	public List<ProductDTO> productList();
+	public List<ProductDTO> listAll();
 	//상세페이지
 	public ProductDTO productDetail(int pCode);
 	//upload
