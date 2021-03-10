@@ -1,20 +1,20 @@
 package com.mypj.test.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 
 public class ProductDTO {
-	public int pCode;
-	public String kCode;
-	public String tCode;
-	public String pName;
-	public String aId;
-	public int pUphit;
+	private int pCode;
+	private String kCode;
+	private String tCode;
+	private String pName;
+	private String aId;
+	private int pUphit;
 	
 	//dName, dType, dUploadDate에 대한 DTO 추가
-	public String dName;
-	public String dType;
-	public Date dUploadDate;
+	private String dName;
+	private String dType;
+	private Timestamp dUploadDate;
 	
 	public String getdName() {
 		return dName;
@@ -32,11 +32,11 @@ public class ProductDTO {
 		this.dType = dType;
 	}
 
-	public Date getdUploadDate() {
+	public Timestamp getdUploadDate() {
 		return dUploadDate;
 	}
 
-	public void setdUploadDate(Date dUploadDate) {
+	public void setdUploadDate(Timestamp dUploadDate) {
 		this.dUploadDate = dUploadDate;
 	}
 

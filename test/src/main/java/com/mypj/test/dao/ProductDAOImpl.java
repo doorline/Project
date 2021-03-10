@@ -7,67 +7,76 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.mypj.test.dto.ProductDTO;
 
+@Repository
 public class ProductDAOImpl implements ProductDAO {
 	
 	@Inject
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
+	private static String namespace="com.mypj.test.productMapper"; //Mapper의 namespace와 일치시킨다
 	
-	@Override
-	public void delete(int pCode) {
-		sqlSession.delete("product.deleteProduct");
+	
 
+	@Override
+	public List<ProductDTO> list() {
+		return sqlSession.selectList(namespace+".list");
 	}
 
 	@Override
-	public List<ProductDTO> listAll() {
-		return sqlSession.selectList("product.listAll");
-	}
-
-	@Override
-	public ProductDTO productDetail(int pCode) {
+	public ProductDTO view(int pCode) {
 		
-		return sqlSession.selectOne("product.productDetail");
+		return sqlSession.selectOne(namespace+".view", pCode);
 	}
 
 	@Override
 	public void upload(ProductDTO dto) {
-		sqlSession.insert("product.upload", dto);
+		sqlSession.insert(namespace+".upload", dto);
 		
 	}
 
 	@Override
 	public void modify(ProductDTO dto) {
-		sqlSession.update("product.modify", dto);
+		sqlSession.update(namespace+".modify", dto);
+		
+	}
+	
+	@Override
+	public void delete(int pCode) {
+		sqlSession.delete(namespace+".delete", pCode);		
+	}	
+	
+	@Override
+	public void uphit(int pCode) {
+		sqlSession.update(namespace+".uphit", pCode);
+	}
+
+	@Override
+	public void dataUpload(ProductDTO dto) {
+		sqlSession.insert(namespace+".dataUpload", dto);
 		
 	}
 
 	@Override
-	public void uploadData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("dName", dName);
-		sqlSession.update("product.insertData", map);
+	public void dataModify(ProductDTO dto) {
+		sqlSession.update(namespace+".dataModify", dto);
 		
 	}
 
 	@Override
-	public void modifyData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode) {
-		// TODO Auto-generated method stub
+	public void dataDelete(int pCode) {
+		sqlSession.delete(namespace+".dataDelete", pCode);
 		
 	}
 
 //	@Override
-//	public ProductDTO selectProductByPCode(int pCode) {
+//	public void dataUploadData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode) {
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("dName", dName);
+//		sqlSession.update("product.insertData", map);
 //		
-//		return sqlSession.selectOne("admin.productDetail");
 //	}
 
 }

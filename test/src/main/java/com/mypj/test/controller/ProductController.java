@@ -17,8 +17,6 @@ import com.mypj.test.service.ProductService;
 @RequestMapping("/admin/*")
 public class ProductController {
 	
-//	IService service;
-//	SqlSession sqlSession;
 	
 	@Inject
 	ProductService productService;
@@ -29,7 +27,7 @@ public class ProductController {
 	@RequestMapping("list")
 	public String list(Model model) {
 
-		List<ProductDTO> list = productService.listAll();		
+		List<ProductDTO> list = productService.list();		
 		model.addAttribute("dtos", list);
 		
 		return "/admin/list";
@@ -45,29 +43,28 @@ public class ProductController {
 	@RequestMapping("upload")
 	public String upload(ProductDTO dto) throws Exception{
 		//파일 업로드를 위해 dto에서 내용가져오기
-		String dName = dto.getpName();
-		String dType = dto.getdType();
-		Date dUploadDate = dto.getdUploadDate();
 		
 		productService.upload(dto);
+		productService.dataUpload(dto);
 		//productService
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 	
 	//수정을 위한 detailView
-	@RequestMapping("detailView")
-	public String detailView(Model model, HttpServletRequest request) {
+	@RequestMapping("view")
+	public String view(Model model, HttpServletRequest request) {
 		//url에 pcode 받아오기
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
-		model.addAttribute("dto", productService.productDetail(pCode));
+		model.addAttribute("view", productService.view(pCode));
 		
-		return "/admin/detailView";
+		return "/admin/view";
 	}
 	//detailView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify")
 	public String modify(ProductDTO dto) {		
 		productService.modify(dto);
-		return "redirect:/admin/detailView/"+dto.getpCode(); //또는 다른 화면
+		productService.dataUpload(dto);
+		return "redirect:/admin/view/"+dto.getpCode(); //또는 다른 화면
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
@@ -77,6 +74,7 @@ public class ProductController {
 		//url에서 pcode 받아오기
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
 		productService.delete(pCode);
+		productService.dataDelete(pCode);
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 }

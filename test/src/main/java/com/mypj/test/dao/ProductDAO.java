@@ -8,9 +8,9 @@ public interface ProductDAO {
 	//관리자가 product를 CRUD하는 기능 작성
 	
 	//list
-	public List<ProductDTO> listAll();
+	public List<ProductDTO> list();
 	//상세페이지
-	public ProductDTO productDetail(int pCode);
+	public ProductDTO view(int pCode);
 	//upload
 	public void upload(ProductDTO dto);
 	//modify
@@ -19,10 +19,11 @@ public interface ProductDAO {
 //	public ProductDTO selectProductByPCode(int pCode);
 	//delete
 	public void delete(int pCode);
-	
-	//파일업용 메소드 작성
-	public void uploadData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
-	public void modifyData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
-	public void deleteData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
+	//uphit
+	public void uphit(int pCode);
+	//파일용 메소드 작성
+	public void dataUpload(ProductDTO dto);
+	public void dataModify(ProductDTO dto);
+	public void dataDelete(int pCode);
 	
 }
