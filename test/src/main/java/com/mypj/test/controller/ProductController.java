@@ -1,5 +1,6 @@
 package com.mypj.test.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class ProductController {
 //	SqlSession sqlSession;
 	
 	@Inject
-	ProductService adminService;
+	ProductService productService;
 	
 	//기능 upload(insert),list,delete,update(modify),uphit, detailView
 	
@@ -28,7 +29,7 @@ public class ProductController {
 	@RequestMapping("list")
 	public String list(Model model) {
 
-		List<ProductDTO> list = adminService.listAll();		
+		List<ProductDTO> list = productService.listAll();		
 		model.addAttribute("dtos", list);
 		
 		return "/admin/list";
@@ -43,24 +44,29 @@ public class ProductController {
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping("upload")
 	public String upload(ProductDTO dto) throws Exception{
-
-		adminService.upload(dto);
+		//파일 업로드를 위해 dto에서 내용가져오기
+		String dName = dto.getpName();
+		String dType = dto.getdType();
+		Date dUploadDate = dto.getdUploadDate();
+		
+		productService.upload(dto);
+		//productService
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 	
 	//수정을 위한 detailView
-	@RequestMapping("detailView/{pCode}")
+	@RequestMapping("detailView")
 	public String detailView(Model model, HttpServletRequest request) {
 		//url에 pcode 받아오기
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
-		model.addAttribute("dto", adminService.productDetail(pCode));
+		model.addAttribute("dto", productService.productDetail(pCode));
 		
 		return "/admin/detailView";
 	}
 	//detailView에서 수정버튼 누르면 update되는 서비스
-	@RequestMapping("modify/{pCode}")
+	@RequestMapping("modify")
 	public String modify(ProductDTO dto) {		
-		adminService.modify(dto);
+		productService.modify(dto);
 		return "redirect:/admin/detailView/"+dto.getpCode(); //또는 다른 화면
 	}
 	
@@ -70,7 +76,7 @@ public class ProductController {
 		//메소드 파라미터에 어노테이션 쓰는걸로
 		//url에서 pcode 받아오기
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
-		adminService.delete(pCode);
+		productService.delete(pCode);
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 }
