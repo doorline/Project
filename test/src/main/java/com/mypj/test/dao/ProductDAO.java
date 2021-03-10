@@ -1,5 +1,6 @@
 package com.mypj.test.dao;
 
+import java.sql.Date;
 import java.util.List;
 import com.mypj.test.dto.ProductDTO;
 
@@ -18,6 +19,10 @@ public interface ProductDAO {
 //	public ProductDTO selectProductByPCode(int pCode);
 	//delete
 	public void delete(int pCode);
-	//파일업로드용 메소드 작성
+	
+	//파일업용 메소드 작성
+	public void uploadData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
+	public void modifyData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
+	public void deleteData(String dName, String dType, Date dUploadDate, int pCode, String kCode, String tCode);
 	
 }

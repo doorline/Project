@@ -27,5 +27,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="J:/util/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="J:/util/ojdbc6_g.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

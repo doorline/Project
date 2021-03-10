@@ -1,5 +1,8 @@
 package com.mypj.test.dto;
 
+import java.sql.Date;
+
+
 public class ProductDTO {
 	public int pCode;
 	public String kCode;
@@ -9,7 +12,34 @@ public class ProductDTO {
 	public int pUphit;
 	
 	//dName, dType, dUploadDate에 대한 DTO 추가
+	public String dName;
+	public String dType;
+	public Date dUploadDate;
 	
+	public String getdName() {
+		return dName;
+	}
+
+	public void setdName(String dName) {
+		this.dName = dName;
+	}
+
+	public String getdType() {
+		return dType;
+	}
+
+	public void setdType(String dType) {
+		this.dType = dType;
+	}
+
+	public Date getdUploadDate() {
+		return dUploadDate;
+	}
+
+	public void setdUploadDate(Date dUploadDate) {
+		this.dUploadDate = dUploadDate;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminDTO [pCode=" + pCode + ", kCode=" + kCode + ", tCode=" + tCode + ", pName=" + pName + ", aId="
