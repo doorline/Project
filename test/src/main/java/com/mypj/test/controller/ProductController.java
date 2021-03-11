@@ -1,14 +1,18 @@
 package com.mypj.test.controller;
 
-import java.sql.Date;
+import java.io.File;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mypj.test.dto.ProductDTO;
 import com.mypj.test.service.ProductService;
@@ -20,6 +24,9 @@ public class ProductController {
 	
 	@Inject
 	ProductService productService;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	//기능 upload(insert),list,delete,update(modify),uphit, detailView
 	
@@ -40,21 +47,28 @@ public class ProductController {
 	}
 	
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
-	@RequestMapping("upload")
-	public String upload(ProductDTO dto) throws Exception{
-		//파일 업로드를 위해 dto에서 내용가져오기
+	@RequestMapping(value="upload", method=RequestMethod.POST)
+	public String upload(ProductDTO dto, MultipartFile file) throws Exception{
+		String dName = file.getOriginalFilename();
+		
+		//임시 디렉토리에 사진을 저장
+		File target = new File(uploadPath, dName);
+		//위의 파일을 지정된 디렉토리로 복사
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		dto.setdName(dName);
 		
 		productService.upload(dto);
 		productService.dataUpload(dto);
-		//productService
+		
 		return "redirect:/admin/list"; //또는 다른 화면
 	}
 	
 	//수정을 위한 detailView
 	@RequestMapping("view")
-	public String view(Model model, HttpServletRequest request) {
+	public String view(Model model, @RequestParam("pCode")int pCode) {
 		//url에 pcode 받아오기
-		int pCode = Integer.parseInt(request.getParameter("pCode"));
+//		int pCode = Integer.parseInt(request.getParameter("pCode"));
 		model.addAttribute("view", productService.view(pCode));
 		
 		return "/admin/view";
@@ -69,10 +83,10 @@ public class ProductController {
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
 	@RequestMapping("delete")
-	public String delete(HttpServletRequest request) {
+	public String delete(@RequestParam("pCode")int pCode) {
 		//메소드 파라미터에 어노테이션 쓰는걸로
 		//url에서 pcode 받아오기
-		int pCode = Integer.parseInt(request.getParameter("pCode"));
+		//int pCode = Integer.parseInt(request.getParameter("pCode"));
 		productService.delete(pCode);
 		productService.dataDelete(pCode);
 		return "redirect:/admin/list"; //또는 다른 화면

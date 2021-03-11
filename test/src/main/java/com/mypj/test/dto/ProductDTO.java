@@ -16,6 +16,20 @@ public class ProductDTO {
 	private String dType;
 	private Timestamp dUploadDate;
 	
+	public ProductDTO(int pCode, String kCode, String tCode, String pName, String aId, int pUphit, String dName,
+			String dType, Timestamp dUploadDate) {
+		super();
+		this.pCode = pCode;
+		this.kCode = kCode;
+		this.tCode = tCode;
+		this.pName = pName;
+		this.aId = aId;
+		this.pUphit = pUphit;
+		this.dName = dName;
+		this.dType = dType;
+		this.dUploadDate = dUploadDate;
+	}
+
 	public String getdName() {
 		return dName;
 	}
