@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.finalPj.testpj.dao.ProductDAO;
 import com.finalPj.testpj.dto.ProductDTO;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 	
 	@Inject
@@ -64,5 +67,4 @@ public class ProductServiceImpl implements ProductService {
 		pdao.dataDelete(pCode);
 		
 	}
-
 }

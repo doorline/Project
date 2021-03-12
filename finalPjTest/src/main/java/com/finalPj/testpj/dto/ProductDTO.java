@@ -15,6 +15,7 @@ public class ProductDTO {
 	private String dType;
 	private Timestamp dUploadDate;
 	
+	public ProductDTO() {}
 	
 	public ProductDTO(int pCode, String kCode, String tCode, String pName, String aId, int pUphit, String dName,
 			String dType, Timestamp dUploadDate) {

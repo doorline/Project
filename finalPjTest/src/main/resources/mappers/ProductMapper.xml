@@ -14,7 +14,7 @@
 	
 	<insert id="upload">
 		insert into product (pCode, kCode, tCode, pName, aId, pUphit) 
-			values (#{product_SEQ.nextval}, #{kCode}, #{tCode}, #{pName}, #{aId}, 0)	
+			values (product_SEQ.nextval, #{kCode}, #{tCode}, #{pName}, #{aId}, 0)	
 	</insert>
 	
 	<update id="modify">
@@ -25,5 +25,9 @@
 	<delete id="delete">
 		delete from product where pCode=#{pCode}
 	</delete>
-
+	
+	<insert id="dataUpload">
+		insert into data (dName, dType, dUploadDate, pCode, kCode, tCode) 
+			values (#{dName}, #{dType}, sysdate, #{pCode}, #{kCode}, #{tCode})	
+	</insert>
 </mapper>
