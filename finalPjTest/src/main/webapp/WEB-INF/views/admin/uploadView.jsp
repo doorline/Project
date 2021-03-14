@@ -21,7 +21,14 @@
 			<label>타입</label>
 			<input type='text' name='tCode' id='tCode'>
 		</div>
-		
+		<div>
+			<label>작품 이미지</label>
+			<input type='file' name='file' id='file'>
+		</div>
+		<div>
+			<label>data type</label>
+			<input type='text' name='dType' id='dType'>
+		</div>
 		<input type='submit' value='업로드'>
 	</form>
 </body>

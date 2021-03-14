@@ -49,22 +49,22 @@ public class ProductController {
 	
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping(value="upload", method=RequestMethod.POST)
-	public String upload(@ModelAttribute ProductDTO dto) throws Exception{
+	public String upload(@ModelAttribute ProductDTO dto, MultipartFile file) throws Exception{
 	
 		
-//		String dName = file.getOriginalFilename();
-//		, MultipartFile file
-//		//임시 디렉토리에 사진을 저장
-//		File target = new File(uploadPath, dName);
-//		//위의 파일을 지정된 디렉토리로 복사
-//		FileCopyUtils.copy(file.getBytes(), target);
-//		
-//		dto.setdName(dName);
+		String dName = file.getOriginalFilename();
+		
+		//임시 디렉토리에 사진을 저장
+		File target = new File(uploadPath, dName);
+		//위의 파일을 지정된 디렉토리로 복사
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		dto.setdName(dName);
 		System.out.println(dto.getpName());
-		//System.out.println(dto.getdName());
+		System.out.println(dto.getdName());
 		
 		productService.upload(dto);
-		//productService.dataUpload(dto);
+		productService.dataUpload(dto);
 		
 		return "/admin/list"; //또는 다른 화면
 	}
