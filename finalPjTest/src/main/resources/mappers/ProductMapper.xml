@@ -9,7 +9,8 @@
 	
 	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->
 	<select id="view" resultType="com.finalPj.testpj.dto.ProductDTO">
-		select * from product where pCode=#{pCode}
+		select * from product left outer Join data on product.pcode=data.pcode
+			where product.pCode=#{pCode}
 	</select>
 	
 	<insert id="upload">

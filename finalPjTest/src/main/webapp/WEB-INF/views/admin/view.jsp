@@ -11,7 +11,6 @@
 
 <style>
 	ul li{list-style:none;}
-	.fl{float:left;}
 	.tc{text-align:center;}
 	.board{width:950px;}
 	.w70{width:70px;}
@@ -27,9 +26,9 @@
  		<li class="fl tc w70">제목</li>
  		<li class="fl tc w70">게시자</li>
  	</ul>
- 	<c:forEach items="${dtos}" var="dtos">
+ 	<c:forEach items="${view}" var="view">
 	 	<ul class="board fl">
-	 		<li class="fl tc w70">${dtos.pCode}</li>
+	 		<li class="fl tc w70">${view.pCode}</li>
 	 		<li class="fl tc w70"><a href="/admin/view?pCode=${dtos.pCode}">${dtos.pName}</a></li>
 	 		<li class="fl tc w70">${dtos.aId}</li>
 	 	</ul>
