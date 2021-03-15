@@ -70,4 +70,14 @@ public class ProductDAOImpl implements ProductDAO {
 		
 	}
 
+	@Override
+	public int getPcode(String pName) {
+		return sqlSession.selectOne(namespace+".getPcode", pName);
+	}
+
+	@Override
+	public ProductDTO getData(int pCode) {
+		return sqlSession.selectOne(namespace+".getData", pCode);
+	}
+
 }

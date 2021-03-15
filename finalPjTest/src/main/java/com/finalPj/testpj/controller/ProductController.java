@@ -1,7 +1,6 @@
 package com.finalPj.testpj.controller;
 
 import java.io.File;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -35,10 +34,9 @@ public class ProductController {
 	@RequestMapping("list")
 	public String list(Model model) {
 
-		List<ProductDTO> list = productService.list();		
-		model.addAttribute("dtos", list);
+		model.addAttribute("dtos", productService.list());
 		
-		return "/admin/list";
+		return "/admin/list2";
 	}
 	
 	//업로드 화면 출력, 리스트에서 업로드 버튼을 누르면 나오는 화면
@@ -60,13 +58,17 @@ public class ProductController {
 		FileCopyUtils.copy(file.getBytes(), target);
 		
 		dto.setdName(dName);
-		System.out.println(dto.getpName());
-		System.out.println(dto.getdName());
 		
 		productService.upload(dto);
+		System.out.println(dto.getpName());
+		System.out.println(dto.getpCode());//여기서 오류가나네 dto에는 pCode가 없어
+		
+		String pName = dto.getpName();
+		dto.setpCode(productService.getPcode(pName));
+		System.out.println(dto.getpCode());
 		productService.dataUpload(dto);
 		
-		return "/admin/list"; //또는 다른 화면
+		return "redirect:/admin/list"; //또는 다른 화면
 	}
 	
 	//수정을 위한 detailView
@@ -75,15 +77,17 @@ public class ProductController {
 		//url에 pcode 받아오기
 //		int pCode = Integer.parseInt(request.getParameter("pCode"));
 		model.addAttribute("view", productService.view(pCode));
+		//model.addAttribute("data", productService.getData(pCode));
 		
 		return "/admin/view";
 	}
+	//URL -> /admin/view/${pCode}
 	//detailView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify")
 	public String modify(ProductDTO dto) {		
 		productService.modify(dto);
 		productService.dataUpload(dto);
-		return "redirect:/admin/view/"+dto.getpCode(); //또는 다른 화면
+		return "redirect:/admin/view?pCode="+dto.getpCode(); //또는 다른 화면
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행

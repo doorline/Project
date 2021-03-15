@@ -67,4 +67,14 @@ public class ProductServiceImpl implements ProductService {
 		pdao.dataDelete(pCode);
 		
 	}
+
+	@Override
+	public int getPcode(String pName) {
+		return pdao.getPcode(pName);
+	}
+
+	@Override
+	public ProductDTO getData(int pCode) {
+		return pdao.getData(pCode);
+	}
 }

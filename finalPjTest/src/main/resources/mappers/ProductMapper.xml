@@ -4,12 +4,12 @@
 	
 	<!-- admin 화면 리스트 출력 -->
 	<select id="list" resultType="com.finalPj.testpj.dto.ProductDTO">
-		select * from product order by pCode
+		select * from product order by pCode desc
 	</select>
 	
 	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->
 	<select id="view" resultType="com.finalPj.testpj.dto.ProductDTO">
-		select * from product where pCode=#{param1} <!--#{pCode} -->
+		select * from product where pCode=#{pCode}
 	</select>
 	
 	<insert id="upload">
@@ -30,4 +30,12 @@
 		insert into data (dName, dType, dUploadDate, pCode, kCode, tCode) 
 			values (#{dName}, #{dType}, sysdate, #{pCode}, #{kCode}, #{tCode})	
 	</insert>
+	
+	<select id="getPcode" resultType="int">
+		select pCode from product where pName=#{pName}
+	</select>
+	
+	<select id="getData" resultType="com.finalPj.testpj.dto.ProductDTO">
+		select * from data where pCode=#{pCode}
+	</select>
 </mapper>
