@@ -88,12 +88,14 @@ public class ProductController {
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
-	@RequestMapping("delete")
+	@RequestMapping("delete/{pCode}")
 	public String delete(@RequestParam("pCode")int pCode) {
+		System.out.println(pCode);
 		
-		productService.dataDelete(pCode);
-		productService.delete(pCode);
-		return "redirect:/admin/list"; //또는 다른 화면
+			productService.dataDelete(pCode);
+			productService.delete(pCode);			
+		
+		return "/admin/list";
 	}
 
 }

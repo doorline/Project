@@ -21,9 +21,10 @@
 </style>
 </head>
 <body>
+
  <div class="list">
  	<ul class="board fl">
- 		<li class="fl tc w70"> </li>
+ 		<li class="fl tc w70">&nbsp;</li>
  		<li class="fl tc w70">pCode</li>
  		<li class="fl tc w70">제목</li>
  		<li class="fl tc w70">게시자</li>
@@ -36,6 +37,10 @@
 	 		<li class="fl tc w70">${dtos.aId}</li>
 	 	</ul>
 	 </c:forEach>
+	 <ul class="board fl">
+		<input type="button" value="삭제" onclick="location.href='delete/${pCode}'"/>
+	</ul>
  </div>
+
 </body>
 </html>

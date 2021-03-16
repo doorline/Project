@@ -9,8 +9,10 @@
 	
 	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->
 	<select id="view" resultType="com.finalPj.testpj.dto.ProductDTO">
-		select * from product left outer Join data on product.pcode=data.pcode
-			where product.pCode=#{pCode}
+		select product.pcode, product.pname, product.tcode, product.kcode,product.aid, product.puphit,
+    		data.dname, data.dtype, data.duploaddate
+   			from product left outer Join data on product.pcode=data.pcode 
+   			where product.pcode=#{pCode}
 	</select>
 	
 	<insert id="upload">
@@ -39,4 +41,8 @@
 	<select id="getData" resultType="com.finalPj.testpj.dto.ProductDTO">
 		select * from data where pCode=#{pCode}
 	</select>
+	
+	<update id="upHit">
+		update product set pUphit = pUphit+1 where pCode=#{pCode}
+	</update>
 </mapper>
