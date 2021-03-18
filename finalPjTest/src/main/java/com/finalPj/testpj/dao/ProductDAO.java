@@ -20,10 +20,5 @@ public interface ProductDAO {
 	//uphit
 	public void uphit(int pCode);
 	public int getPcode(String pName);
-//	//파일용 메소드 작성
-//	public void dataUpload(ProductDTO dto);
-//	public void dataModify(ProductDTO dto);
-//	public void dataDelete(int pCode);
-//	public ProductDTO getData(int pCode);
 
 }

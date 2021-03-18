@@ -1,6 +1,6 @@
 package com.finalPj.testpj.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class ProductDTO {
 	private int pCode;
@@ -12,12 +12,12 @@ public class ProductDTO {
 	
 	//product와 data 테이블 합침
 	private String pImg;
-	private Timestamp pUploadDate;
+	private Date pUploadDate;
 	
 	public ProductDTO() {}
 
 	public ProductDTO(int pCode, String kCode, String tCode, String pName, String aId, int pUphit, String pImg,
-			Timestamp pUploadDate) {
+			Date pUploadDate) {
 		super();
 		this.pCode = pCode;
 		this.kCode = kCode;
@@ -85,11 +85,11 @@ public class ProductDTO {
 		this.pImg = pImg;
 	}
 
-	public Timestamp getpUploadDate() {
+	public Date getpUploadDate() {
 		return pUploadDate;
 	}
 
-	public void setpUploadDate(Timestamp pUploadDate) {
+	public void setpUploadDate(Date pUploadDate) {
 		this.pUploadDate = pUploadDate;
 	}
 

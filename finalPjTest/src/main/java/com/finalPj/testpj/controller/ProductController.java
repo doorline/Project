@@ -82,18 +82,38 @@ public class ProductController {
 	//modifyView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify")
 	public String modify(@ModelAttribute ProductDTO dto, MultipartFile file) throws Exception {		
-		String pImg = file.getOriginalFilename();
+		//수정전 이미지 파일명 가져오기
+		int pCode=dto.getpCode();
+		ProductDTO bfDto = productService.view(pCode);
+		System.out.println(bfDto.getpImg());
 		
-		//임시 디렉토리에 사진을 저장
-		File target = new File(uploadPath, pImg);
-		//위의 파일을 지정된 디렉토리로 복사
-		FileCopyUtils.copy(file.getBytes(), target);
-		//파일이름 지정
+		//사진 변경
+		String pImg="";
+		if(!file.getOriginalFilename().isEmpty()) {
+			pImg = file.getOriginalFilename();			
+			File target = new File(uploadPath, pImg);
+			FileCopyUtils.copy(file.getBytes(), target);
+			//이전 이미지 삭제
+			String filePath = uploadPath+bfDto.getpImg();
+			File bfFile = new File(filePath);
+			if(bfFile.exists()) {	
+				if(bfFile.delete()) {
+					System.out.println("이미지 파일 삭제 완료");
+				}else {
+					System.out.println("이미지 파일 삭제 실패");
+				}
+			}else {
+				System.out.println("파일이 존재하지 않음");
+			}
+		}else {
+			//사진변경 안함
+			pImg = bfDto.getpImg();
+		}		
+		System.out.println(pImg);
 		dto.setpImg(pImg);
-		
 		productService.modify(dto);
 		
-		return "redirect:/admin/view/{pCode}";
+		return "redirect:/admin/view?pCode="+pCode;
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행

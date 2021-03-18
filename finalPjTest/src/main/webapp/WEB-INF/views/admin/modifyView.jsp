@@ -15,16 +15,19 @@
 		<h1>작품 업로드</h1>
 	
 	<hr>
-	<form action="/admin/upload" method="post" enctype="multipart/form-data"> <fieldset>
+	<form action="/admin/modify" method="post" enctype="multipart/form-data"> <fieldset>
 	
 	<table> 
 		<tr>
 			<th>관리자Id</th>
-			<td><input type="text" name="aId" size="50" value="admin" class="form-control"></td>
+			<td>
+				<input type="text" name="aId" size="50" value="${view.aId}" class="form-control">
+				<input type="hidden" name="pCode" value="${view.pCode}">
+			</td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="pName" required="required" placeholder="제목"></td>
+			<td><input type="text" name="pName" required="required" value="${view.pName}"></td>
 		</tr>
 		
 		<tr>
@@ -61,7 +64,7 @@
 		<tr>
 			<th>썸네일보기</th>
 			<td>				
-				<img id="selectImg" src="#"/>
+				<img id="selectImg" src="/resources/productImg/${view.pImg}"/>
 				<script type="text/javascript">
 					function readURL(input){
 						if(input.files && input.files[0]){

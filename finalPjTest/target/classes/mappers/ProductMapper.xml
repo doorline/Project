@@ -18,26 +18,15 @@
 	</insert>
 	
 	<update id="modify">
-		update product set kCode=#{kCode}, tCode=#{tCode}, pName=#{pName}, aId=#{aId}
+		update product set kCode=#{kCode}, tCode=#{tCode}, pName=#{pName}, aId=#{aId},
+			pImg=#{pImg}, pUploadDate=sysdate
 			where pCode=#{pCode}
 	</update>
 	
 	<delete id="delete">
 		delete from product where pCode=#{pCode}
 	</delete>
-	<!-- data table
-		<insert id="dataUpload">
-			insert into data (dName, dType, dUploadDate, pCode, kCode, tCode) 
-				values (#{dName}, #{dType}, sysdate, #{pCode}, #{kCode}, #{tCode})	
-		</insert>
-		
-		<delete id="dataDelete">
-			delete from data where pCode=#{pCode}
-		</delete>
-		<select id="getData" resultType="com.finalPj.testpj.dto.ProductDTO">
-			select * from data where pCode=#{pCode}
-		</select>
-	-->
+	
 	<select id="getPcode" resultType="int">
 		select pCode from product where pName=#{pName}
 	</select>	
