@@ -19,11 +19,11 @@ public interface ProductService {
 	
 	public void uphit(int pCode);
 	
-	//파일 crud
-	public void dataUpload(ProductDTO dto);
 	public int getPcode(String pName);
-	public void dataModify(ProductDTO dto);
-	public void dataDelete(int pCode);
-	public ProductDTO getData(int pCode);
+	//파일 crud
+//	public void dataUpload(ProductDTO dto);
+//	public void dataModify(ProductDTO dto);
+//	public void dataDelete(int pCode);
+//	public ProductDTO getData(int pCode);
 
 }

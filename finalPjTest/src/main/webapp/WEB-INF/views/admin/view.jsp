@@ -7,32 +7,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>list</title>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>view</title>
 <style>
-	ul li{list-style:none;}
-	.tc{text-align:center;}
+	.tc{text-align:left;}
 	.board{width:950px;}
 	.w70{width:70px;}
 	.w500{width:500px;}
+	.w200{width:200px;}
 	.w120{width:120px;}
 	.w100{width:100px;}	
 </style>
 </head>
 <body>
- <div class="list">
- 	<ul class="board fl">
- 		<li class="fl tc w70">pCode</li>
- 		<li class="fl tc w70">제목</li>
- 		<li class="fl tc w70">게시자</li>
- 	</ul>
- 	<c:forEach items="${view}" var="view">
-	 	<ul class="board fl">
-	 		<li class="fl tc w70">${view.pCode}</li>
-	 		<li class="fl tc w70"><a href="/admin/view?pCode=${dtos.pCode}">${dtos.pName}</a></li>
-	 		<li class="fl tc w70">${dtos.aId}</li>
-	 	</ul>
-	 </c:forEach>
+ <div class="board">
+ 	<div class="row tc">
+ 		<span class="menu w100">pCode</span>
+ 		<span class="content w500">${view.pCode}</span>
+ 	</div>
+ 	<div class="row tc">
+ 		<span class="menu w70">제목</span>
+ 		<span class="content w500">${view.pName}</span>
+ 	</div>
+ 	<div class="row tc">
+ 		<span class="menu w70">게시자</span>
+ 		<span class="content w500">${view.aId}</span>
+ 	</div>
+ 	<div class="row tc">
+ 		<span class="menu w70">이미지</span>
+ 		<span class="content w500"><img src="/resources/productImg/${view.pImg}" class="w200"/></span>
+ 	</div>
+ 	<div>
+ 		<input type="button" onclick="location.href='list'" value="목록보기">
+ 	</div>
  </div>
 </body>
 </html>
