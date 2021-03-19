@@ -13,13 +13,13 @@
 	</select>
 	
 	<insert id="upload">
-		insert into product (pCode, kCode, tCode, pName, aId, pUphit, pImg, pUploadDate) 
-			values (product_SEQ.nextval, #{kCode}, #{tCode}, #{pName}, #{aId}, 0, #{pImg}, sysdate)	
+		insert into product (pCode, kCode, tCode, pName, aId, pContent, pUphit, pImg, pUploadDate) 
+			values (product_SEQ.nextval, #{kCode}, #{tCode}, #{pName}, #{aId}, #{pContent}, 0, #{pImg}, sysdate)	
 	</insert>
 	
 	<update id="modify">
 		update product set kCode=#{kCode}, tCode=#{tCode}, pName=#{pName}, aId=#{aId},
-			pImg=#{pImg}, pUploadDate=sysdate
+			pImg=#{pImg}, pUploadDate=sysdate, pContent=#{pContent}
 			where pCode=#{pCode}
 	</update>
 	

@@ -9,6 +9,7 @@ public class ProductDTO {
 	private String pName;
 	private String aId;
 	private int pUphit;
+	private String pContent;
 	
 	//product와 data 테이블 합침
 	private String pImg;
@@ -16,8 +17,8 @@ public class ProductDTO {
 	
 	public ProductDTO() {}
 
-	public ProductDTO(int pCode, String kCode, String tCode, String pName, String aId, int pUphit, String pImg,
-			Date pUploadDate) {
+	public ProductDTO(int pCode, String kCode, String tCode, String pName, String aId, int pUphit, String pContent,
+			String pImg, Date pUploadDate) {
 		super();
 		this.pCode = pCode;
 		this.kCode = kCode;
@@ -25,6 +26,7 @@ public class ProductDTO {
 		this.pName = pName;
 		this.aId = aId;
 		this.pUphit = pUphit;
+		this.pContent = pContent;
 		this.pImg = pImg;
 		this.pUploadDate = pUploadDate;
 	}
@@ -77,6 +79,14 @@ public class ProductDTO {
 		this.pUphit = pUphit;
 	}
 
+	public String getpContent() {
+		return pContent;
+	}
+
+	public void setpContent(String pContent) {
+		this.pContent = pContent;
+	}
+
 	public String getpImg() {
 		return pImg;
 	}
@@ -96,7 +106,10 @@ public class ProductDTO {
 	@Override
 	public String toString() {
 		return "ProductDTO [pCode=" + pCode + ", kCode=" + kCode + ", tCode=" + tCode + ", pName=" + pName + ", aId="
-				+ aId + ", pUphit=" + pUphit + ", pImg=" + pImg + ", pUploadDate=" + pUploadDate + "]";
+				+ aId + ", pUphit=" + pUphit + ", pContent=" + pContent + ", pImg=" + pImg + ", pUploadDate="
+				+ pUploadDate + "]";
 	}
+
+	
 
 }

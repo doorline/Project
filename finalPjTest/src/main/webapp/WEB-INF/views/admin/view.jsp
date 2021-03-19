@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<title>view</title>
+<title>상세 페이지</title>
 <style>
 	.tc{
 		text-align:left;
@@ -37,12 +37,16 @@
  		<span class="content w500">${view.aId}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu w70">장르</span>
+ 		<span class="menu w70">분류</span>
  		<span class="content w500">${view.kCode}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu w70">타입</span>
+ 		<span class="menu w70">상세장르</span>
  		<span class="content w500">${view.tCode}</span>
+ 	</div>
+ 	<div class="row tc">
+ 		<span class="menu w70">내용</span>
+ 		<span class="content w500">${view.pContent}</span>
  	</div>
  	<div class="row tc">
  		<span class="menu w70">이미지</span>

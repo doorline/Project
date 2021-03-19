@@ -1,11 +1,14 @@
 package com.finalPj.testpj.controller;
 
 import java.io.File;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.finalPj.testpj.HomeController;
 import com.finalPj.testpj.dto.ProductDTO;
 import com.finalPj.testpj.service.ProductService;
 
@@ -22,6 +26,7 @@ import com.finalPj.testpj.service.ProductService;
 @Controller
 @RequestMapping("/admin/*")
 public class ProductController {
+	
 	
 	@Inject
 	ProductService productService;
@@ -51,8 +56,10 @@ public class ProductController {
 	public String upload(@ModelAttribute ProductDTO dto, MultipartFile file) throws Exception{
 	
 		
-		String pImg = file.getOriginalFilename();
-		
+		String originName = file.getOriginalFilename();
+		//파일명 중복방지를 위한 랜덤생성
+		UUID uuid = UUID.randomUUID();		
+		String pImg = uuid.toString()+"_"+originName;
 		//임시 디렉토리에 사진을 저장
 		File target = new File(uploadPath, pImg);
 		//위의 파일을 지정된 디렉토리로 복사
@@ -90,7 +97,9 @@ public class ProductController {
 		//사진 변경
 		String pImg="";
 		if(!file.getOriginalFilename().isEmpty()) {
-			pImg = file.getOriginalFilename();			
+			String originName = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();		
+			pImg = uuid.toString()+"_"+originName;			
 			File target = new File(uploadPath, pImg);
 			FileCopyUtils.copy(file.getBytes(), target);
 			//이전 이미지 삭제
