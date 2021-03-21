@@ -54,8 +54,13 @@ public class ProductController {
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping(value="upload", method=RequestMethod.POST)
 	public String upload(@ModelAttribute ProductDTO dto, MultipartFile imgFile) throws Exception{
+<<<<<<< HEAD
 	
 		
+=======
+		//, MultipartFile vodFile 
+		//비디오 업데이트시 추가		
+>>>>>>> 93064c8f14609c0bb15b2543ba2a3b35d2938361
 		String originName = imgFile.getOriginalFilename();
 		//파일명 중복방지를 위한 랜덤생성
 		UUID uuid = UUID.randomUUID();		
@@ -65,11 +70,22 @@ public class ProductController {
 		//위의 파일을 지정된 디렉토리로 복사
 		FileCopyUtils.copy(imgFile.getBytes(), target);
 		//파일이름 지정
-		dto.setpImg(pImg);
 		
+		//String pImg = dataUpload(imgFile);
+		//String pVod = dataUpload(vodFile);
+		dto.setpImg(pImg);
 		productService.upload(dto);
 		
 		return "redirect:/admin/list"; //또는 다른 화면
+	}
+	//파일 업로드가 중복되어 메소드를 새로 만듦
+	public String dataUpload(MultipartFile file) throws Exception{
+		String originName = file.getOriginalFilename();
+		UUID uuid = UUID.randomUUID();		
+		String pdata = uuid.toString()+"_"+originName;
+		File target = new File(uploadPath, pdata);
+		FileCopyUtils.copy(file.getBytes(), target);
+		return pdata;
 	}
 	
 	//수정을 위한 detailView
