@@ -76,7 +76,7 @@
 		<div class="row">
 			<span class="menu w100">썸네일</span>
  			<span class="content w500">
- 				<input type="file" name="file" id="imgInput" onchange="readURL(this);" />
+ 				<input type="file" name="imgFile" id="imgInput" onchange="readURL(this);" />
  			</span>
 		</div>
 		<div class="row">
