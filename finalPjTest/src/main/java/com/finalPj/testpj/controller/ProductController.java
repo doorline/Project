@@ -53,17 +53,17 @@ public class ProductController {
 	
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping(value="upload", method=RequestMethod.POST)
-	public String upload(@ModelAttribute ProductDTO dto, MultipartFile file) throws Exception{
+	public String upload(@ModelAttribute ProductDTO dto, MultipartFile imgFile) throws Exception{
 	
 		
-		String originName = file.getOriginalFilename();
+		String originName = imgFile.getOriginalFilename();
 		//파일명 중복방지를 위한 랜덤생성
 		UUID uuid = UUID.randomUUID();		
 		String pImg = uuid.toString()+"_"+originName;
 		//임시 디렉토리에 사진을 저장
 		File target = new File(uploadPath, pImg);
 		//위의 파일을 지정된 디렉토리로 복사
-		FileCopyUtils.copy(file.getBytes(), target);
+		FileCopyUtils.copy(imgFile.getBytes(), target);
 		//파일이름 지정
 		dto.setpImg(pImg);
 		
@@ -88,7 +88,7 @@ public class ProductController {
 	
 	//modifyView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify")
-	public String modify(@ModelAttribute ProductDTO dto, MultipartFile file) throws Exception {		
+	public String modify(@ModelAttribute ProductDTO dto, MultipartFile imgFile) throws Exception {		
 		//수정전 이미지 파일명 가져오기
 		int pCode=dto.getpCode();
 		ProductDTO bfDto = productService.view(pCode);
@@ -96,12 +96,12 @@ public class ProductController {
 		
 		//사진 변경
 		String pImg="";
-		if(!file.getOriginalFilename().isEmpty()) {
-			String originName = file.getOriginalFilename();
+		if(!imgFile.getOriginalFilename().isEmpty()) {
+			String originName = imgFile.getOriginalFilename();
 			UUID uuid = UUID.randomUUID();		
 			pImg = uuid.toString()+"_"+originName;			
 			File target = new File(uploadPath, pImg);
-			FileCopyUtils.copy(file.getBytes(), target);
+			FileCopyUtils.copy(imgFile.getBytes(), target);
 			//이전 이미지 삭제
 			String filePath = uploadPath+bfDto.getpImg();
 			File bfFile = new File(filePath);
