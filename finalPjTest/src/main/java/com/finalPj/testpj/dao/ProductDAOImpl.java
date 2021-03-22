@@ -57,5 +57,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne(namespace+".getPcode", pName);
 	}
 
+	@Override
+	public int cntList() {
+		return sqlSession.selectOne(namespace+".cntList");
+	}
+
 
 }

@@ -4,7 +4,15 @@
 	
 	<!-- admin 화면 리스트 출력 -->
 	<select id="list" resultType="com.finalPj.testpj.dto.ProductDTO">
-		select * from product order by pCode desc
+		select * from (
+			select rownum rn, A.* from (
+				select * from product order by pCode) A
+			) where rn between #{start} and #{end}
+			 
+	</select>
+	
+	<select id="cntList" resultType="int">
+		select count(*) from product
 	</select>
 	
 	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->

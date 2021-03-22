@@ -20,5 +20,6 @@ public interface ProductDAO {
 	//uphit
 	public void uphit(int pCode);
 	public int getPcode(String pName);
-
+	//페이징처리
+	public int cntList();
 }

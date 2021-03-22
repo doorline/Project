@@ -54,4 +54,9 @@ public class ProductServiceImpl implements ProductService {
 		return pdao.getPcode(pName);
 	}
 
+	@Override
+	public int cntList() {
+		return pdao.cntList();
+	}
+
 }

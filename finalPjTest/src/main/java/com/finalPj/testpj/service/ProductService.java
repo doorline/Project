@@ -20,5 +20,7 @@ public interface ProductService {
 	public void uphit(int pCode);
 	
 	public int getPcode(String pName);
+	
+	public int cntList();
 
 }

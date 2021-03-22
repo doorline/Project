@@ -7,8 +7,6 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.finalPj.testpj.HomeController;
+import com.finalPj.testpj.common.PagingVO;
 import com.finalPj.testpj.dto.ProductDTO;
 import com.finalPj.testpj.service.ProductService;
 
@@ -38,8 +36,21 @@ public class ProductController {
 	
 	//리스트 화면 출력
 	@RequestMapping("list")
-	public String list(Model model) throws Exception{
+	public String list(Model model, PagingVO vo,
+				@RequestParam(value="nowPage", required=false)String nowPage,
+				@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws Exception{
+		int total = productService.cntList();
+		if(nowPage==null && cntPerPage == null) {
+			nowPage="1";
+			cntPerPage="5";
+		}else if(nowPage==null) {
+			nowPage="1";
+		}else if(cntPerPage==null) {
+			cntPerPage="5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
+		model.addAttribute("paging", vo);
 		model.addAttribute("dtos", productService.list());
 		
 		return "/admin/list2";
