@@ -78,7 +78,7 @@
 		<div class="row">
 			<span class="menu w100">썸네일</span>
  			<span class="content w500">
- 				<input type="file" name="file" id="imgInput" onchange="readURL(this);" />
+ 				<input type="file" name="imgFile" id="imgInput" onchange="readURL(this);" />
  			</span>
 		</div>
 		<div class="row">
@@ -98,6 +98,29 @@
 				</script>
 				<p/>
 				<%=request.getRealPath("/") %>
+ 			</span>
+		</div>
+		<div class="row">
+			<span class="menu w100">Vod</span>
+ 			<span class="content w500">
+ 				<input type="file" name="vodFile" id="vodInput" onchange="readVodURL(this);"/> 	
+ 			</span>
+		</div>
+		<div class="row">
+			<span class="menu w100">&nbsp;</span>
+ 			<span class="content w500">
+ 				<video id="selectVod" src="#"/>
+				<script type="text/javascript">
+					function readVodURL(input){
+						if(input.files && input.files[0]){
+							var reader = new FileReader();
+							reader.onload = function(e){
+								$('#selectVod').attr('src', e.target.result).width(200);
+							}
+							reader.readAsDataURL(input.files[0]);
+						}
+					}
+				</script>
  			</span>
 		</div>
 		<div class="row">

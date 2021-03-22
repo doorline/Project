@@ -99,6 +99,29 @@
  			</span>
 		</div>
 		<div class="row">
+			<span class="menu w100">Vod</span>
+ 			<span class="content w500">
+ 				<input type="file" name="vodFile" id="vodInput" onchange="readVodURL(this);"/> 				
+ 			</span>
+		</div>
+		<div class="row">
+			<span class="menu w100">&nbsp;</span>
+ 			<span class="content w500">
+ 				<video id="selectVod" src="#"/>
+				<script type="text/javascript">
+					function readVodURL(input){
+						if(input.files && input.files[0]){
+							var reader = new FileReader();
+							reader.onload = function(e){
+								$('#selectVod').attr('src', e.target.result).width(200);
+							}
+							reader.readAsDataURL(input.files[0]);
+						}
+					}
+				</script>
+ 			</span>
+		</div>
+		<div class="row">
 			<span class="content w100"><input type="submit" value="완료"></span>
  			<span class="content w100"><input type="button" onclick="location.href='list'" value="목록보기"></span>
 		</div>

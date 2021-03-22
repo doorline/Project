@@ -53,27 +53,12 @@ public class ProductController {
 	
 	//uploadView에서 작성후 업로드 버튼을 누르면 실제로 db에 올라가는 서비스
 	@RequestMapping(value="upload", method=RequestMethod.POST)
-	public String upload(@ModelAttribute ProductDTO dto, MultipartFile imgFile) throws Exception{
-<<<<<<< HEAD
-	
-		
-=======
-		//, MultipartFile vodFile 
-		//비디오 업데이트시 추가		
->>>>>>> 93064c8f14609c0bb15b2543ba2a3b35d2938361
-		String originName = imgFile.getOriginalFilename();
-		//파일명 중복방지를 위한 랜덤생성
-		UUID uuid = UUID.randomUUID();		
-		String pImg = uuid.toString()+"_"+originName;
-		//임시 디렉토리에 사진을 저장
-		File target = new File(uploadPath, pImg);
-		//위의 파일을 지정된 디렉토리로 복사
-		FileCopyUtils.copy(imgFile.getBytes(), target);
-		//파일이름 지정
-		
-		//String pImg = dataUpload(imgFile);
-		//String pVod = dataUpload(vodFile);
+	public String upload(@ModelAttribute ProductDTO dto, MultipartFile imgFile, MultipartFile vodFile) throws Exception{
+
+		String pImg = dataUpload(imgFile);
+		String pVod = dataUpload(vodFile);
 		dto.setpImg(pImg);
+		dto.setpVod(pVod);
 		productService.upload(dto);
 		
 		return "redirect:/admin/list"; //또는 다른 화면
@@ -81,6 +66,7 @@ public class ProductController {
 	//파일 업로드가 중복되어 메소드를 새로 만듦
 	public String dataUpload(MultipartFile file) throws Exception{
 		String originName = file.getOriginalFilename();
+		System.out.println(originName);
 		UUID uuid = UUID.randomUUID();		
 		String pdata = uuid.toString()+"_"+originName;
 		File target = new File(uploadPath, pdata);
@@ -104,41 +90,58 @@ public class ProductController {
 	
 	//modifyView에서 수정버튼 누르면 update되는 서비스
 	@RequestMapping("modify")
-	public String modify(@ModelAttribute ProductDTO dto, MultipartFile imgFile) throws Exception {		
+	public String modify(@ModelAttribute ProductDTO dto, MultipartFile imgFile, MultipartFile vodFile) throws Exception {		
 		//수정전 이미지 파일명 가져오기
 		int pCode=dto.getpCode();
 		ProductDTO bfDto = productService.view(pCode);
 		System.out.println(bfDto.getpImg());
+		System.out.println(bfDto.getpVod());
 		
-		//사진 변경
+		//이미지 변경
 		String pImg="";
 		if(!imgFile.getOriginalFilename().isEmpty()) {
-			String originName = imgFile.getOriginalFilename();
-			UUID uuid = UUID.randomUUID();		
-			pImg = uuid.toString()+"_"+originName;			
-			File target = new File(uploadPath, pImg);
-			FileCopyUtils.copy(imgFile.getBytes(), target);
+			pImg = dataUpload(imgFile);
 			//이전 이미지 삭제
 			String filePath = uploadPath+bfDto.getpImg();
 			File bfFile = new File(filePath);
-			if(bfFile.exists()) {	
-				if(bfFile.delete()) {
-					System.out.println("이미지 파일 삭제 완료");
-				}else {
-					System.out.println("이미지 파일 삭제 실패");
-				}
-			}else {
-				System.out.println("파일이 존재하지 않음");
-			}
+			System.out.println(filePath);
+			dataDelete(bfFile);
 		}else {
 			//사진변경 안함
 			pImg = bfDto.getpImg();
-		}		
+		}
+		//vod 변경
+		String pVod="";
+		if(!vodFile.getOriginalFilename().isEmpty()) {
+			pVod = dataUpload(vodFile);
+			//이전 영상 삭제
+			String filePath = uploadPath+bfDto.getpVod();
+			System.out.println(filePath);
+			File bfFile = new File(filePath);
+			dataDelete(bfFile);
+		}else {
+			//영상 변경 안함
+			pVod = bfDto.getpVod();
+		}
 		System.out.println(pImg);
+		System.out.println(pVod);
 		dto.setpImg(pImg);
+		dto.setpVod(pVod);
 		productService.modify(dto);
 		
 		return "redirect:/admin/view?pCode="+pCode;
+	}
+	//파일삭제
+	public void dataDelete(File file) {
+		if(file.exists()) {
+			if(file.delete()) {
+				System.out.println("파일삭제완료");
+			}else {
+				System.out.println("파일 삭제 실패");
+			}
+		}else {
+			System.out.println("파일 존재하지않음");
+		}
 	}
 	
 	//삭제는 list에서 삭제버튼 누르면 바로 실행
@@ -150,19 +153,14 @@ public class ProductController {
 		for(String i : pCodes) {
 			//파일삭제
 			ProductDTO delDto = productService.view(Integer.parseInt(i));
-			String filePath = uploadPath+delDto.getpImg();
-			System.out.println(filePath);
 			
-			File file = new File(filePath);			
-			if(file.exists()) {	
-				if(file.delete()) {
-					System.out.println("이미지 파일 삭제 완료");
-				}else {
-					System.out.println("이미지 파일 삭제 실패");
-				}
-			}else {
-				System.out.println("파일이 존재하지 않음");
-			}
+			String imgFilePath = uploadPath+delDto.getpImg();
+			String vodFilePath = uploadPath+delDto.getpVod();
+			
+			File imgFile = new File(imgFilePath);
+			File vodFile = new File(vodFilePath);
+			dataDelete(imgFile);
+			dataDelete(vodFile);
 			productService.delete(Integer.parseInt(i));			
 		}
 		return "redirect:/admin/list";	
