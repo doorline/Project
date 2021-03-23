@@ -25,7 +25,7 @@
 	$(document).on('click','#btnSearch',function(e){
 		e.preventDefault();
 		var url="${targetURL}";
-		url = url+"?serchType="+$('#searchType').val();
+		url = url+"?searchType="+$('#searchType').val();
 		url = url+"&keyword="+$('#keyword').val();
 		location.href = url;
 		console.log(url);
@@ -58,7 +58,7 @@
 </form>
 <div class="serch">
 	<div class="tl">
-		<select name="searchType">
+		<select name="searchType" id="searchType">
 			<option value="pName">제목</option>
 			<option value="pContent">내용</option>
 		</select>

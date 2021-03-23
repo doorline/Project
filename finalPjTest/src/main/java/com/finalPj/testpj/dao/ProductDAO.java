@@ -3,12 +3,13 @@ package com.finalPj.testpj.dao;
 import java.util.List;
 
 import com.finalPj.testpj.common.PagingVO;
+import com.finalPj.testpj.common.SearchVO;
 import com.finalPj.testpj.dto.ProductDTO;
 
 
 public interface ProductDAO {
 	
-	public List<ProductDTO> list(PagingVO vo);
+	public List<ProductDTO> list(SearchVO vo);
 	//상세페이지
 	public ProductDTO view(int pCode);
 	//upload

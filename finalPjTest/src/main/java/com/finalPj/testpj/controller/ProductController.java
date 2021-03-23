@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finalPj.testpj.common.PagingVO;
+import com.finalPj.testpj.common.SearchVO;
 import com.finalPj.testpj.dto.ProductDTO;
 import com.finalPj.testpj.service.ProductService;
 
@@ -37,9 +38,12 @@ public class ProductController {
 	
 	//리스트 화면 출력
 	@RequestMapping("list")
-	public String list(Model model, PagingVO vo,
+	public String list(Model model, SearchVO vo,
 				@RequestParam(value="nowPage", required=false)String nowPage,
-				@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws Exception{
+				@RequestParam(value="cntPerPage",required=false)String cntPerPage,
+				@RequestParam(value="searchType", required=false)String searchType,
+				@RequestParam(value="keyword", required=false)String keyword) throws Exception{
+		//페이징
 		int total = productService.cntList();
 		
 		if(nowPage==null && cntPerPage == null) {
@@ -50,7 +54,9 @@ public class ProductController {
 		}else if(cntPerPage==null) {
 			cntPerPage="10";
 		}
-		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo = new SearchVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setSearchType(searchType);
+		vo.setKeyword(keyword);
 		System.out.println(vo);
 		
 		model.addAttribute("paging", vo);

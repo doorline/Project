@@ -6,12 +6,29 @@
 	<select id="list" resultType="com.finalPj.testpj.dto.ProductDTO">
 		select * from (
 			select rownum rn, A.* from (
-				select * from product order by pCode desc) A
-			) where rn between #{start} and #{end}			 
+				select * from product 
+					<trim prefix="where" prefixOverrides="AND |OR">
+						<if test="searchType=='pName' and keyword != null and keyword !='' ">
+							and pName like '%#{keyword}%'
+						</if>
+						<if test="searchType=='pContent' and keyword != null and keyword !='' ">
+							and pContent like '%#{keyword}%'
+						</if>
+					</trim>
+			order by pCode desc	) A		 
+			) where rn between #{start} and #{end}
 	</select>
 	
 	<select id="cntList" resultType="int">
 		select count(*) from product
+		<trim prefix="where" prefixOverrides="AND|OR">
+			<if test="searchType=='pName' and keyword != null and keyword !='' ">
+				and pName like '%#{keyword}%'
+			</if>
+			<if test="searchType=='pContent' and keyword != null and keyword !='' ">
+				and pContent like '%#{keyword}%'
+			</if>
+		</trim>
 	</select>
 	
 	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->
