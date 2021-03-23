@@ -8,11 +8,11 @@
 			select rownum rn, A.* from (
 				select * from product 
 					<trim prefix="where" prefixOverrides="AND |OR">
-						<if test="searchType=='pName' and keyword != null and keyword !='' ">
-							and pName like '%#{keyword}%'
+						<if test='searchType=="pName" and keyword != null and keyword !="" '>
+							and pName like '%'||#{keyword}||'%'
 						</if>
-						<if test="searchType=='pContent' and keyword != null and keyword !='' ">
-							and pContent like '%#{keyword}%'
+						<if test='searchType=="pContent" and keyword != null and keyword !="" '>
+							and pContent like '%'||#{keyword}||'%'
 						</if>
 					</trim>
 			order by pCode desc	) A		 
@@ -21,12 +21,12 @@
 	
 	<select id="cntList" resultType="int">
 		select count(*) from product
-		<trim prefix="where" prefixOverrides="AND|OR">
-			<if test="searchType=='pName' and keyword != null and keyword !='' ">
-				and pName like '%#{keyword}%'
+		<trim prefix="where" prefixOverrides="AND |OR">
+			<if test='searchType=="pName" and keyword != null and keyword !="" '>
+				and pName like '%'||#{keyword}||'%'
 			</if>
-			<if test="searchType=='pContent' and keyword != null and keyword !='' ">
-				and pContent like '%#{keyword}%'
+			<if test='searchType=="pContent" and keyword != null and keyword !="" '>
+				and pContent like '%'||#{keyword}||'%'
 			</if>
 		</trim>
 	</select>
