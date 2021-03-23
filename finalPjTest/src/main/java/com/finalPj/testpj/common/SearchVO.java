@@ -14,8 +14,6 @@ public class SearchVO extends PagingVO{
 		calLastPage(getTotal(), getCntPerPage());
 		calStartEndPage(getNowPage(), cntPage);
 		calStartEnd(getNowPage(), getCntPerPage());
-		getSearchType();
-		getKeyword();
 	}
 
 	public String getSearchType() {
