@@ -6,9 +6,8 @@
 	<select id="list" resultType="com.finalPj.testpj.dto.ProductDTO">
 		select * from (
 			select rownum rn, A.* from (
-				select * from product order by pCode) A
-			) where rn between #{start} and #{end}
-			 
+				select * from product order by pCode desc) A
+			) where rn between #{start} and #{end}			 
 	</select>
 	
 	<select id="cntList" resultType="int">

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.finalPj.testpj.common.PagingVO;
 import com.finalPj.testpj.dto.ProductDTO;
 
 @Repository
@@ -17,9 +18,9 @@ public class ProductDAOImpl implements ProductDAO {
 	private static String namespace="com.finalPj.testpj.productMapper"; //
 
 	@Override
-	public List<ProductDTO> list() {
+	public List<ProductDTO> list(PagingVO vo) {
 		
-		return sqlSession.selectList(namespace+".list");
+		return sqlSession.selectList(namespace+".list", vo);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.finalPj.testpj.common.PagingVO;
 import com.finalPj.testpj.dao.ProductDAO;
 import com.finalPj.testpj.dto.ProductDTO;
 
@@ -16,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO pdao;
 
 	@Override
-	public List<ProductDTO> list() {
-		return pdao.list();
+	public List<ProductDTO> list(PagingVO vo) {
+		return pdao.list(vo);
 	}
 
 	@Override

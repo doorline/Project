@@ -1,6 +1,7 @@
 package com.finalPj.testpj.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -40,18 +41,20 @@ public class ProductController {
 				@RequestParam(value="nowPage", required=false)String nowPage,
 				@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws Exception{
 		int total = productService.cntList();
+		
 		if(nowPage==null && cntPerPage == null) {
 			nowPage="1";
-			cntPerPage="5";
+			cntPerPage="10";
 		}else if(nowPage==null) {
 			nowPage="1";
 		}else if(cntPerPage==null) {
-			cntPerPage="5";
+			cntPerPage="10";
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-
+		System.out.println(vo);
+		
 		model.addAttribute("paging", vo);
-		model.addAttribute("dtos", productService.list());
+		model.addAttribute("dtos", productService.list(vo));
 		
 		return "/admin/list2";
 	}
