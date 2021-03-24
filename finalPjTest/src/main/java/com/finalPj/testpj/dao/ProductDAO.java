@@ -1,5 +1,6 @@
 package com.finalPj.testpj.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.finalPj.testpj.common.PagingVO;
@@ -23,5 +24,5 @@ public interface ProductDAO {
 	public void uphit(int pCode);
 	public int getPcode(String pName);
 	//페이징처리
-	public int cntList();
+	public int cntList(HashMap<String, String> searchMap);
 }

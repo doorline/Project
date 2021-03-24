@@ -1,5 +1,6 @@
 package com.finalPj.testpj.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -56,8 +57,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int cntList() {
-		return pdao.cntList();
+	public int cntList(HashMap<String, String> searchMap) {
+		return pdao.cntList(searchMap);
 	}
 
 }

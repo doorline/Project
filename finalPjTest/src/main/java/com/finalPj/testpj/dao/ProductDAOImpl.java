@@ -1,5 +1,6 @@
 package com.finalPj.testpj.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,8 +61,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public int cntList() {
-		return sqlSession.selectOne(namespace+".cntList");
+	public int cntList(HashMap<String, String> searchMap) {
+		return sqlSession.selectOne(namespace+".cntList", searchMap);
 	}
 
 }

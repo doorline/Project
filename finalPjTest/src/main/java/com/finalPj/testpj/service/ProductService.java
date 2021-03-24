@@ -1,5 +1,6 @@
 package com.finalPj.testpj.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.finalPj.testpj.common.SearchVO;
@@ -22,6 +23,6 @@ public interface ProductService {
 	
 	public int getPcode(String pName);
 	
-	public int cntList();
+	public int cntList(HashMap<String, String> searchMap);
 
 }

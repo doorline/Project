@@ -1,6 +1,7 @@
 package com.finalPj.testpj.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,21 +45,22 @@ public class ProductController {
 				@RequestParam(value="searchType", required=false)String searchType,
 				@RequestParam(value="keyword", required=false)String keyword) throws Exception{
 		//페이징
-		int total = productService.cntList();
+		cntPerPage="10";
 		
-		if(nowPage==null && cntPerPage == null) {
+		if(nowPage==null) {
 			nowPage="1";
-			cntPerPage="10";
-		}else if(nowPage==null) {
-			nowPage="1";
-		}else if(cntPerPage==null) {
-			cntPerPage="10";
 		}
+		HashMap<String,String> searchMap = new HashMap<String, String>();
+		searchMap.put("searchType", searchType);
+		searchMap.put("keyword", keyword);
+		int total = productService.cntList(searchMap);
+		
 		vo = new SearchVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		vo.setSearchType(searchType);
 		vo.setKeyword(keyword);
 		System.out.println(vo);
 		
+		model.addAttribute("search", vo);
 		model.addAttribute("paging", vo);
 		model.addAttribute("dtos", productService.list(vo));
 		
