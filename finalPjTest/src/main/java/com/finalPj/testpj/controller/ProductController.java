@@ -41,11 +41,10 @@ public class ProductController {
 	@RequestMapping("list")
 	public String list(Model model, SearchVO vo,
 				@RequestParam(value="nowPage", required=false)String nowPage,
-				@RequestParam(value="cntPerPage",required=false)String cntPerPage,
 				@RequestParam(value="searchType", required=false)String searchType,
 				@RequestParam(value="keyword", required=false)String keyword) throws Exception{
 		//페이징
-		cntPerPage="10";
+		int cntPerPage=10;
 		
 		if(nowPage==null) {
 			nowPage="1";
@@ -55,7 +54,7 @@ public class ProductController {
 		searchMap.put("keyword", keyword);
 		int total = productService.cntList(searchMap);
 		
-		vo = new SearchVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo = new SearchVO(total, Integer.parseInt(nowPage), cntPerPage);
 		vo.setSearchType(searchType);
 		vo.setKeyword(keyword);
 		System.out.println(vo);

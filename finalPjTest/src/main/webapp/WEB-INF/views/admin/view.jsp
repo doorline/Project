@@ -50,11 +50,11 @@
  	</div>
  	<div class="row tc">
  		<span class="menu w70">이미지</span>
- 		<span class="content w500"><img src="/resources/productImg/${view.pImg}" class="w200"/></span>
+ 		<span class="content w500"><img src="/resources/ProductImg/${view.pImg}" class="w200"/></span>
  	</div>
  	<div class="row tc">
  		<span class="menu w70">VOD</span>
- 		<span class="content w500"><video src="/resources/productImg/${view.pVod}" class="w500" controls/></span>
+ 		<span class="content w500"><video src="/resources/ProductImg/${view.pVod}" class="w500" controls/></span>
  	</div>
  	<div>
  		<input type="button" onclick="location.href='/admin/modifyView?pCode=${view.pCode}'" value="수정">

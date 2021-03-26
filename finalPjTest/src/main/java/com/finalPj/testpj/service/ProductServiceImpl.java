@@ -18,46 +18,46 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO pdao;
 
 	@Override
-	public List<ProductDTO> list(SearchVO vo) {
+	public List<ProductDTO> list(SearchVO vo) throws Exception {
 		return pdao.list(vo);
 	}
 
 	@Override
-	public ProductDTO view(int pCode) {
+	public ProductDTO view(int pCode) throws Exception{
 		
 		return pdao.view(pCode);
 	}
 
 	@Override
-	public void upload(ProductDTO dto) {
+	public void upload(ProductDTO dto) throws Exception{
 		pdao.upload(dto);
 		
 	}
 
 	@Override
-	public void modify(ProductDTO dto) {
+	public void modify(ProductDTO dto) throws Exception{
 		pdao.modify(dto);
 		
 	}
 
 	@Override
-	public void delete(int pCode) {
+	public void delete(int pCode) throws Exception{
 		pdao.delete(pCode);
 		
 	}
 
 	@Override
-	public void uphit(int pCode) {
+	public void uphit(int pCode) throws Exception{
 		pdao.uphit(pCode);
 		
 	}
 	@Override
-	public int getPcode(String pName) {
+	public int getPcode(String pName) throws Exception{
 		return pdao.getPcode(pName);
 	}
 
 	@Override
-	public int cntList(HashMap<String, String> searchMap) {
+	public int cntList(HashMap<String, String> searchMap) throws Exception{
 		return pdao.cntList(searchMap);
 	}
 

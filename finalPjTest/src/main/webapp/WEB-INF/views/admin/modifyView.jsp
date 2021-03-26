@@ -84,7 +84,7 @@
 		<div class="row">
 			<span class="menu w100">썸네일보기</span>
  			<span class="content w500">
- 				<img id="selectImg" src="/resources/productImg/${view.pImg}"/>
+ 				<img id="selectImg" src="/resources/ProductImg/${view.pImg}"/>
 				<script type="text/javascript">
 					function readURL(input){
 						if(input.files && input.files[0]){
@@ -109,7 +109,7 @@
 		<div class="row">
 			<span class="menu w100">&nbsp;</span>
  			<span class="content w500">
- 				<video id="selectVod" src="#"/>
+ 				<video id="selectVod" src="/resources/ProductImg/${view.pVod}"/>
 				<script type="text/javascript">
 					function readVodURL(input){
 						if(input.files && input.files[0]){

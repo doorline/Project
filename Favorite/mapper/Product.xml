@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.Mapper.Product">
+
+	<insert id="upload">
+ 		insert into PRODUCT(pCode, pName, pUphit, kCode, tCode) values (product_seq.nextval, #{pName}, 0, #{kCode}, #{tCode})
+	</insert>
+	
+	<select id="list" resultType="com.watching.dto.ProductDTO">
+		select pCode, pName, kCode from PRODUCT order by pCode desc
+	</select>
+	
+	<select id="view" resultType="com.watching.dto.ProductDTO">
+		select pCode, pName, kCode, pType from PRODUCT where pCode=#{pCode}
+	</select>
+	
+	<update id="modify" parameterType="com.watching.dto.ProductDTO">
+		update PRODUCT set pName=#{pName}, kCode=#{kCode} tCode=#{tCode} where pCode=#{pCode}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from PRODUCT where pCode=#{pCode}
+	</delete>
+	
+	<insert id="dataUpload">
+ 		insert into DATA(dName, dType, dUploadDate, pCode, kCode, tCode) values (#{dName}, #{dType}, sysdate, #{pCode}, #{kCode}, #{tCode})
+	</insert>
+	
+	<update id="dataModify" parameterType="com.watching.dto.ProductDTO">
+		update DATA set dName=#{dName}, kCode=#{kCode} tCode=#{tCode} where pCode=#{pCode}
+	</update>
+	
+	<delete id="dataDelete" parameterType="int">
+		delete from DATA where pCode=#{pCode}
+	</delete>
+	
+
+	
+</mapper>
