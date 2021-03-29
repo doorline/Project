@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watching.mappers.productMapper">
+	<!-- admin 화면 리스트 출력 -->
+	<select id="list" resultType="com.watching.dto.ProductDTO">
+		select * from (
+			select rownum rn, A.* from (
+				select * from product 
+					<trim prefix="where" prefixOverrides="AND |OR">
+						<if test='searchType=="pName" and keyword != null and keyword !="" '>
+							and pName like '%'||#{keyword}||'%'
+						</if>
+						<if test='searchType=="pContent" and keyword != null and keyword !="" '>
+							and pContent like '%'||#{keyword}||'%'
+						</if>
+					</trim>
+			order by pCode desc	) A		 
+			) where rn between #{start} and #{end}
+	</select>
+	
+	<select id="cntList" parameterType="hashmap" resultType="int">
+		select count(*) from product
+		<trim prefix="where" prefixOverrides="AND |OR">
+			<if test='keyword != null and keyword !="" '>
+				<if test='searchType=="pName"'>
+					and pName like '%'||#{keyword}||'%'
+				</if>
+				<if test='searchType=="pContent"'>
+					and pContent like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</trim>
+	</select>
+	
+	<!-- admin 상세페이지 여기서 수정버튼 누르면 수정되는걸로-->
+	<select id="view" resultType="com.watching.dto.ProductDTO">
+		select * from product where pcode=#{pCode}
+	</select>
+	
+	<insert id="upload">
+		insert into product (pCode, kCode, tCode, pName, aId, pContent, pUphit, pImg, pVod, pUploadDate) 
+			values (product_SEQ.nextval, #{kCode}, #{tCode}, #{pName}, #{aId}, #{pContent}, 0, #{pImg}, #{pVod},sysdate)	
+	</insert>
+	
+	<update id="modify">
+		update product set kCode=#{kCode}, tCode=#{tCode}, pName=#{pName}, aId=#{aId},
+			pImg=#{pImg}, pVod=#{pVod}, pUploadDate=sysdate, pContent=#{pContent}
+			where pCode=#{pCode}
+	</update>
+	
+	<delete id="delete">
+		delete from product where pCode=#{pCode}
+	</delete>
+	
+	<select id="getPcode" resultType="int">
+		select pCode from product where pName=#{pName}
+	</select>	
+	
+	<update id="upHit">
+		update product set pUphit = pUphit+1 where pCode=#{pCode}
+	</update>
+</mapper>

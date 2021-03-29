@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.watching.mappers.favoriteMapper">
+	<!-- 테스트를 위한 favlist query-->
+	<select id="favlist" resultType="com.watching.dto.FavoriteDTO">
+		select f.fCode, p.pCode, p.pName, p.pImg from FAVORITE f, PRODUCT p where p.pCode=f.pCode and f.mId='testuser' order by fCode desc
+	</select>
+	
+	<insert id="addfav" parameterType="com.watching.dto.FavoriteDTO">
+		insert into FAVORITE (fCode, pCode, mId) values (FAVORITE_SEQ.nextval, #{pCode}, 'testuser') 
+ 	</insert>
+	
+	<delete id="deletefav">
+		delete from FAVORITE where fCode=#{fCode}
+	</delete>
+
+</mapper>
