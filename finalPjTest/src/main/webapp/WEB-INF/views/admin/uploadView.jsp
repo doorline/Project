@@ -48,7 +48,7 @@
 	}
 	.btn{
 		float:left;
-		margin:10px 10px 5px 5px;
+		margin:5px;
 		border:0;
 		height:25px;
 		background-color:#DC143C;

@@ -63,7 +63,7 @@ public class ProductController {
 		model.addAttribute("paging", vo);
 		model.addAttribute("dtos", productService.list(vo));
 		
-		return "/admin/list2";
+		return "/admin/list";
 	}
 	
 	//업로드 화면 출력, 리스트에서 업로드 버튼을 누르면 나오는 화면

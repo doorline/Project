@@ -38,6 +38,7 @@
 		font-weight:bold;
 		vertical-align:baseline;
 		color: #fff;	
+		text-align:center;
 	}
 	.line{
 		display:table-cell;
@@ -45,20 +46,25 @@
     	border-bottom:1px solid silver;
     	vertical-align:baseline;
     	color: #fff;
+    	text-align:center;
 	}
-	<!--게시판 열 설정 
-	.board>li:first-child {width:10%;}
-	.board>li:first-child +li{width:10%;}
-	.board>li:first-child +li+li{width:50%;}
-	.board>li:first-child +li+li+li{width:15%;}
-	.board>li:first-child +li+li+li+li{width:15%;}
-	-->
 	.paging{
 		clear:both;
 		position:relative;
 	}
 	<!--버튼 -->
-	
+	.line_footer{
+		display: table-caption;
+  		caption-side: bottom;
+    	text-align:center;
+	}
+	.d_btn{
+			border:0;
+			height:25px;
+			background-color:#DC143C;
+			border-radius:1px;
+			font-weight:bold;
+	}
 	<!--검색 -->
 	.search{
 		margin:auto;
@@ -100,7 +106,6 @@
 	}
 	.m5{margin:5px;}
 	.mt10{margin:10px 0 0 0;}
-	.btn-m5{margin:5px 0 0 5px;}
 	.m20{margin:20px;}
 	.fl{float:left;}
 	.tc{text-align:center;}
@@ -140,24 +145,24 @@
 			<span class="line">${dtos.pUploadDate}</span>
 		</div>
 	</c:forEach>
-</div>
-	<div>
-		<span class="fl tc btn-m5">
-				<style>
-					.d_btn{
-						border:0;
-						height:25px;
-						background-color:#DC143C;
-						border-radius:1px;
-						font-weight:bold;
-					}
-				</style>
-				<button type="submit" class="d_btn">삭제</button>
-		</span> 
-		<span class="fl tc btn-m5">
+	<div style="display:table-caption; caption-side:bottom;">
+		
+			<style>
+				.d_btn{
+					border:0;
+					height:25px;
+					background-color:#DC143C;
+					border-radius:1px;
+					font-weight:bold;
+				}
+			</style>
+			<button type="submit" class="d_btn">삭제</button>
+		
+		
 			<input type="button" onclick="location.href='uploadView'" value="업로드 작성" class="d_btn"/>
-		</span>
+		
 	</div>
+</div>
 </form>
 
 <div class="paging tc">
