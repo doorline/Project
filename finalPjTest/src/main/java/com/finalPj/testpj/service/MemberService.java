@@ -1,12 +1,14 @@
-package com.watching.dao;
+package com.finalPj.testpj.service;
 
 import java.util.List;
 
-import com.watching.dto.MemberDTO;
+import javax.servlet.http.HttpSession;
 
-//기본 메소드 세팅
-public interface MemberDAO {
-	public boolean memberLogin(MemberDTO dto) throws Exception;
+import com.finalPj.testpj.dto.MemberDTO;
+
+public interface MemberService {
+	
+	public boolean memberLogin(MemberDTO dto, HttpSession session) throws Exception;
 
 	public void memberJoin(MemberDTO dto) throws Exception;
 
@@ -14,7 +16,9 @@ public interface MemberDAO {
 
 	public void memberEdit(MemberDTO dto) throws Exception;
 
-	public void memberDelete(String mid) throws Exception;
+	public void memberDelete(String mid, HttpSession session) throws Exception;
+
+	public void memberLogout(HttpSession session) throws Exception;
 
 	public List<MemberDTO> memberFindId(MemberDTO dto) throws Exception;
 

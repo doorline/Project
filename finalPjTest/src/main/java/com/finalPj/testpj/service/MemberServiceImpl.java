@@ -1,4 +1,4 @@
-package com.watching.service;
+package com.finalPj.testpj.service;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -7,16 +7,17 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.watching.dao.MemberDAO;
-import com.watching.dto.MemberDTO;
+import com.finalPj.testpj.dao.MemberDAO;
+import com.finalPj.testpj.dto.MemberDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-
+	
 	@Autowired
 	private MemberDAO dao;
-
+	
 	@Autowired
 	private static Hashtable<String, String> loginMembers = new Hashtable<String, String>();
 
@@ -31,6 +32,23 @@ public class MemberServiceImpl implements MemberService {
 			return result;
 		}
 		return !isLogin;
+	}
+	
+	public boolean isLogin(String mid) {
+		boolean isLogin = false;
+		Enumeration<String> e = loginMembers.keys();
+		String key = "";
+		while (e.hasMoreElements()) {
+			key = (String) e.nextElement();
+			if (mid.equals(loginMembers.get(key)))
+				isLogin = true;
+		}
+		return isLogin;
+	}
+	
+	public void setSession(HttpSession session, MemberDTO dto) {
+		loginMembers.put(session.getId(), dto.getMid());
+		session.setAttribute("mid", dto.getMid());
 	}
 
 	@Override
@@ -53,6 +71,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberEdit(MemberDTO dto) throws Exception {
 		dao.memberEdit(dto);
+
 	}
 
 	@Override
@@ -65,36 +84,6 @@ public class MemberServiceImpl implements MemberService {
 	public void memberLogout(HttpSession session) throws Exception {
 		loginMembers.remove(session.getId());
 		session.invalidate();
-	}
-
-	// 로그인이 되어있는지 확인
-	public boolean isLogin(String mid) {
-		boolean isLogin = false;
-		Enumeration<String> e = loginMembers.keys();
-		String key = "";
-		while (e.hasMoreElements()) {
-			key = (String) e.nextElement();
-			if (mid.equals(loginMembers.get(key)))
-				isLogin = true;
-		}
-		return isLogin;
-	}
-
-	public  boolean isUsing(String sessionId) {
-		boolean isUsing = false;
-		
-		 Enumeration<String> e = loginMembers.keys(); String key = ""; 
-		 while (e.hasMoreElements()) { 
-			 key = (String) e.nextElement(); 
-			 if (sessionId.equals(loginMembers.get(key))) 
-				 isUsing = true; 
-			 } 
-		 return isUsing; 
-		 }
-
-	public void setSession(HttpSession session, MemberDTO dto) {
-		loginMembers.put(session.getId(), dto.getMid());
-		session.setAttribute("mid", dto.getMid());
 	}
 
 	@Override

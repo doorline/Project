@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.watching.dto.FavoriteDTO;
 
+@Repository
 public class FavoriteDAOImpl implements FavoriteDAO{
 	
 

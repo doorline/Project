@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import com.watching.dao.FavoriteDAO;
 import com.watching.dto.FavoriteDTO;
 
+@Service
 public class FavoriteServiceImpl implements FavoriteService {
 	
 	@Inject

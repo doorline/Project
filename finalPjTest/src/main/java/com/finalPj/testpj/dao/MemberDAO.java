@@ -1,10 +1,9 @@
-package com.watching.dao;
+package com.finalPj.testpj.dao;
 
 import java.util.List;
 
-import com.watching.dto.MemberDTO;
+import com.finalPj.testpj.dto.MemberDTO;
 
-//기본 메소드 세팅
 public interface MemberDAO {
 	public boolean memberLogin(MemberDTO dto) throws Exception;
 

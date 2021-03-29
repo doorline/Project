@@ -7,6 +7,7 @@ import com.watching.dao.AdminDAO;
 import com.watching.dto.AdminDTO;
 import com.watching.dto.MemberDTO;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	@Inject    //dao를 호출하기때문에 의존성을 주입한다.

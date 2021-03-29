@@ -15,12 +15,22 @@ body {
   background-color: black;
 }
 
-.navbar a {
+.menu {
   float: left;
   font-size: 20px;
   color: white;
   text-align: center;
   padding: 14px 16px;
+  text-decoration: none;
+}
+
+.logo {
+  margin:10px 10px;
+  float: left;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 0px;
   text-decoration: none;
 }
 
@@ -40,7 +50,7 @@ body {
   margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.menu:hover, .dropdown:hover .dropbtn {
   background-color: red;
 }
 
@@ -75,8 +85,8 @@ body {
 <body>
 
 	<div class="navbar">
-	  <a href="/">Watching</a>
-	  
+	 	<a  class="logo" href="/" ><img src="<spring:url value ='/resources/Logo/wchlogo.png'/>" width="150px" height="50"></a>
+	  		  
 	  <div class="dropdown">
 	    <button class="dropbtn">드라마 
 	      <i class="fa fa-caret-down"></i>
@@ -97,9 +107,9 @@ body {
 	    </div>
 	  </div>
 	  
-	  <a href="/favorite/favlist">찜한 콘텐츠</a>
+	  <a class="menu" href="/favorite/favlist">찜한 콘텐츠</a>
 	  
-	  <a href="/listsearch">검색하기</a>
+	  <a class="menu" href="/listsearch">검색하기</a>
 	  
 	  <div class="rightmenu">
 		  <div class="dropdown">
@@ -122,7 +132,7 @@ body {
 		    </div>
 		  </div>
 		  
-		  <a href="">로그인</a>
+		  <a class="menu" href="">로그인</a>
 		 
 		</div>
 	</div>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.watching.dto.ProductDTO;
 import com.watching.dto.SearchVO;
 
+@Repository
 public class ProductDAOImpl implements ProductDAO {
 	
 	@Autowired

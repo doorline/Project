@@ -9,6 +9,7 @@ import com.watching.dao.ProductDAO;
 import com.watching.dto.ProductDTO;
 import com.watching.dto.SearchVO;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 	
 	@Inject

@@ -5,7 +5,7 @@
 #bottom {
   width:100%;
   height:100px;
-  position:absolute;
+
   bottom:0;
   background:black;
   text-align: center;

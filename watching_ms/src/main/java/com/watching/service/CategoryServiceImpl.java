@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import com.watching.dao.CategoryDAO;
 import com.watching.dto.ProductDTO;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 	
 	@Inject

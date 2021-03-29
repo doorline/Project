@@ -22,6 +22,7 @@ display:inline-block; margin:10px;
 <%@include file="top.jsp"%>
 
 	<h3>국내 드라마</h3>
+	
 	<c:set var="ddl" value="${dms_dramalist}"/>
 	<c:set var="fav" value="${favlist}"/>
 	<ul class="dms_dramalist_ul">

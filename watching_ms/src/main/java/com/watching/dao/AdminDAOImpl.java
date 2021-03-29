@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.watching.dto.AdminDTO;
 import com.watching.dto.MemberDTO;
 
+@Repository
 public class AdminDAOImpl implements AdminDAO {
 
 	@Inject
