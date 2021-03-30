@@ -3,11 +3,11 @@
 <mapper namespace="com.finalPj.testpj.memberMapper">
 
 <select id="memberLogin" resultType="String"> 
-SELECT mname from member WHERE mid=#{mid} AND mpw=#{mpw} 
+	SELECT MNAME from member WHERE MID='hh2' AND MPW='hh2'
 </select> 
 
 <insert id="memberJoin"> 
-INSERT INTO member (mid, mpw, mname) values (#{mid}, #{mpw}, #{mname}
+INSERT INTO member (mid, mpw, mname) values (#{mid}, #{mpw}, #{mname})
 </insert> 
 
 <select id="memberDetail" resultType="com.finalPj.testpj.dto.MemberDTO"> 

@@ -31,7 +31,7 @@
     	position:relative;
     	padding: 0 auto;
 	}
-	.menu{
+	.b_menu{
 		display:table-cell;
 		border-bottom:2px solid silver;
 		font-size:14pt;
@@ -122,19 +122,20 @@
 	});
 </script>
 <body>
+	<%@include file="/WEB-INF/views/top.jsp"%>
 
-	<h1>관리자 모드</h1>
+	<h1 style="margin:0 0 0 30px;">관리자 모드</h1>
 	
 	<hr>
 	
 <form action="/admin/delete">
 <div class="list">
 	<div class="board">
-		<span class="menu"></span>
-		<span class="menu">pCode</span>
-		<span class="menu">제목</span>
-		<span class="menu">게시자</span>
-		<span class="menu">업로드 일자</span>
+		<span class="b_menu"></span>
+		<span class="b_menu">pCode</span>
+		<span class="b_menu">제목</span>
+		<span class="b_menu">게시자</span>
+		<span class="b_menu">업로드 일자</span>
 	</div>
 	<c:forEach items="${dtos}" var="dtos">
 		<div class="board">
@@ -210,6 +211,6 @@
 	<c:url var="targetURL" value="/admin/list"></c:url>
 	<button name="btnSearch" id="btnSearch" class="search_btn">검색</button>
 </div>
-
 </body>
+	<%@include file="/WEB-INF/views/bottom.jsp"%>
 </html>

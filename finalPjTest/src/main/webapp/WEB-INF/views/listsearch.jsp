@@ -1,24 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>검색</title>
-<style>
-.searchform {
-  display:flex;
-  justify-content:center;
-  align:center;
-}
-
-</style>
 </head>
 <body>
 
-<%@include file="top.jsp"%>
+	<%@include file="top.jsp"%>
 
 	<h1 align="center">보고싶은 작품을 검색해주세요</h1>
 

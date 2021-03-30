@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	public boolean isLogin(String mid) {
 		boolean isLogin = false;
-		Enumeration<String> e = loginMembers.keys();
+		Enumeration<String> e = loginMembers.keys();		
 		String key = "";
 		while (e.hasMoreElements()) {
 			key = (String) e.nextElement();

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.watching.dao.CategoryDAO;
 import com.watching.dto.ProductDTO;
 

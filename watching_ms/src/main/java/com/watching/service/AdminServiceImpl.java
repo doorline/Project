@@ -3,6 +3,8 @@ package com.watching.service;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
+
 import com.watching.dao.AdminDAO;
 import com.watching.dto.AdminDTO;
 import com.watching.dto.MemberDTO;

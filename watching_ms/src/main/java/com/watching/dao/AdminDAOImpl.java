@@ -3,6 +3,7 @@ package com.watching.dao;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.watching.dto.AdminDTO;
 import com.watching.dto.MemberDTO;

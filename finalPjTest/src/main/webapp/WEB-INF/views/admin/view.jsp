@@ -20,9 +20,12 @@
 		width:800px;
 		position: relative;
 		display:table;
+		margin:auto;
 	}
 	.row{
 		display:table-row;
+		position:relative;
+    	padding: 0 auto;
 		margin:5px;
 	}
 	.caption{
@@ -30,7 +33,7 @@
 		caption-side:bottom;
 		margin:5px;
 	}
-	.menu{
+	.b_menu{
 		width:80px;
 		margin:10px;
 		display:table-cell;
@@ -45,7 +48,9 @@
 		text-align:left;
 		padding:10px;
 	}
-	.board{width:800px;}
+	fieldset{
+		width:900px;
+	}
 	.btn{
 		border:0;
 		height:25px;
@@ -60,43 +65,44 @@
 	.w100{width:100px;}
 </style>
 </head>
+	<%@include file="/WEB-INF/views/top.jsp"%>
 <body>
 
-		<h1>작품 상세보기</h1>
+		<h1 style="margin:0 0 0 30px;">작품 상세보기</h1>
 	
 	<hr>
  <div class="board">
 <fieldset>
  	<div class="row tc">
- 		<span class="menu">pCode</span>
+ 		<span class="b_menu">pCode</span>
  		<span class="content">${view.pCode}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">제목</span>
+ 		<span class="b_menu">제목</span>
  		<span class="content">${view.pName}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">게시자</span>
+ 		<span class="b_menu">게시자</span>
  		<span class="content">${view.aId}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">분류</span>
+ 		<span class="b_menu">분류</span>
  		<span class="content">${view.kCode}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">상세장르</span>
+ 		<span class="b_menu">상세장르</span>
  		<span class="content">${view.tCode}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">내용</span>
+ 		<span class="b_menu">내용</span>
  		<span class="content">${view.pContent}</span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">이미지</span>
+ 		<span class="b_menu">이미지</span>
  		<span class="content"><img src="/resources/ProductImg/${view.pImg}" class="w200"/></span>
  	</div>
  	<div class="row tc">
- 		<span class="menu">VOD</span>
+ 		<span class="b_menu">VOD</span>
  		<span class="content"><video src="/resources/ProductImg/${view.pVod}" class="w500" controls/></span>
  	</div>
 </fieldset>
@@ -106,4 +112,5 @@
  	</div>
  </div>
 </body>
+	<%@include file="/WEB-INF/views/bottom.jsp"%>
 </html>
