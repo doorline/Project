@@ -12,6 +12,17 @@ public class MemberDTO {
 	public String mname;
 	
 	public MemberDTO() {}
+	
+	public MemberDTO(String mid, long mcode, String mpw, Date mmemsdate, String mstate, long mscode, String mname) {
+		super();
+		this.mid = mid;
+		this.mcode = mcode;
+		this.mpw = mpw;
+		this.mmemsdate = mmemsdate;
+		this.mstate = mstate;
+		this.mscode = mscode;
+		this.mname = mname;
+	}
 
 	public String getMid() {
 		return mid;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.finalPj.testpj.dto.MemberDTO" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
@@ -81,11 +82,18 @@ body {
 }
 </style>
 
+<%
+	String mid=(String)session.getAttribute("mid");
+	if(mid==null){
+		mid="GUEST";
+	}
+%>
+
 </head>
 <body>
 
 	<div class="navbar">
-	 	<a  class="logo" href="/" ><img src="<spring:url value ='/resources/Logo/wchlogo.png'/>" width="150px" height="50"></a>
+	 	<a  class="logo" href="/" ><img src="<spring:url value ='/resources/Logo/wchlogo.png'/>" height="50px"></a>
 	  		  
 	  <div class="dropdown">
 	    <button class="dropbtn">드라마 
@@ -127,12 +135,15 @@ body {
 		      <i class="fa fa-caret-down"></i>
 		    </button>
 		    <div class="dropdown-content">
-		      <a href="">회원정보</a>
-		      <a href="">로그아웃</a>
+		    <% if(mid != "GUEST"){ %>
+		    	<p style="color:#fff;"><%=mid %></p>
+		    <%} %>
+		      <a href="/member/detail">회원정보</a>
+		      <a href="/member/logout">로그아웃</a>
 		    </div>
 		  </div>
 		  
-		  <a class="menu" href="">로그인</a>
+		  <a class="menu" href="/member/loginPage">로그인</a>
 		 
 		</div>
 	</div>

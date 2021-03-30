@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.watching.dao.ProductDAO;
 import com.watching.dto.ProductDTO;
 import com.watching.dto.SearchVO;

@@ -34,7 +34,7 @@ public class MemberController {
 		boolean result = service.memberLogin(dto, session);
 		ModelAndView mav = new ModelAndView();
 		if (result == true) {
-			mav.setViewName("redirect:/board/list");
+			mav.setViewName("redirect:/main_after");
 		} else {
 			mav.setViewName("/member/MemberLogin");
 		}
@@ -44,7 +44,7 @@ public class MemberController {
 	// 회원가입 페이지
 	@RequestMapping("/joinPage")
 	public String memberJoinPage() {
-		return "/member/memberJoin";
+		return "/member/MemberJoin";
 	} 
 	
 	// 회원가입
