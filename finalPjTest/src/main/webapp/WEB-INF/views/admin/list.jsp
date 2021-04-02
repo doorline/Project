@@ -122,7 +122,15 @@
 	});
 </script>
 <body>
-	<%@include file="/WEB-INF/views/top.jsp"%>
+	<%@include file="../template/adminTop.jsp"%>
+	
+	
+	<c:if test="${aid == null}">
+		<script>			
+			alert("관리자만 접근할 수 있습니다.");
+			document.location.href="/";
+		</script>
+	</c:if>
 
 	<h1 style="margin:0 0 0 30px;">관리자 모드</h1>
 	
@@ -158,7 +166,7 @@
 				}
 			</style>
 			<button type="submit" class="d_btn">삭제</button>
-		
+			<button type="reset" class="d_btn">초기화</button>
 		
 			<input type="button" onclick="location.href='uploadView'" value="업로드 작성" class="d_btn"/>
 		

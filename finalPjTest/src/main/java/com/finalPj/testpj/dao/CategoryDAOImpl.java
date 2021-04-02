@@ -42,15 +42,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public List<ProductDTO> listsearch(String pName, String pImg, String keyword) throws Exception {
+	public List<ProductDTO> listsearch(String keyword) throws Exception {
 		
-		HashMap<String, Object> data = new HashMap<String, Object>();
 		
-		data.put("pName", pName);
-		data.put("pImg", pImg);
-		data.put("keyword", keyword);
-		
-		return sqlSession.selectList(namespace + ".listsearch", data);
+		return sqlSession.selectList(namespace + ".listsearch", keyword);
 	}
 
 }

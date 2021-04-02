@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.finalPj.testpj.adminMapper">
 	<!-- 로그인 관련 mapper-->
-    <select id = "login_check" parameterType= "com.finalPj.testpj.dto.AdminDTO" resultType="String">
-        select aid from admin
-        where aid=#{aid} and apw=#{apw} and aname=#{aname}
+    <select id = "login_check" resultType="String">
+        select aname from admin
+        where aid=#{aid} and apw=#{apw}
     </select>    
  
     <!-- 회원 강제탈퇴관련 mapper -->
-    <delete id="admin_member_forced_evictionCheck">
+    <delete id="admin_member_forced_evictionCheck" parameterType="com.finalPj.testpj.dto.MemberDTO">
     delete from member
-    where mid=#{mid}
+    where mid = #{mid, jdbcType=VARCHAR}
     </delete>
 </mapper>

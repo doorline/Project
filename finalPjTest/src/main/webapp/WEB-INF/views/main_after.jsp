@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.finalPj.testpj.dto.ProductDTO" %>
+<%@ page import="com.finalPj.testpj.dto.MemberDTO" %>
 <%@ page import="com.finalPj.testpj.service.CategoryService" %>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -77,6 +78,17 @@ img {vertical-align: middle;}
 <c:set var="dfl" value="${dms_filmlist}"/>
 <c:set var="afl" value="${abr_filmlist}"/>
 
+<%
+	MemberDTO dto = (MemberDTO)session.getAttribute("dto");
+	if(dto==null){
+		%>
+		<script>
+		alert('Watching 로그인 후 이용해주세요');
+		document.location.href="/";
+		</script>
+		<%} else {
+%>
+
 	<h4>신작</h4>
 	
 	<div class="slideshow-container">
@@ -86,11 +98,11 @@ img {vertical-align: middle;}
 		</div>
 		
 		<div class="mySlides fade">
-		  <img src="/resources/ProductImg/국내드라마_나빌레라_메인_포스터.JPG" style="width:1800px; height:400px;">
+		  <img src="/resources/ProductImg/국내드라마_나빌레라_메인_포스터2.JPG" style="width:1800px; height:400px;">
 		</div>
 		
 		<div class="mySlides fade">
-		  <img src="/resources/ProductImg/국내드라마_펜트하우스2_메인_포스터.JPG" style="width:1800px; height:400px;">
+		  <img src="/resources/ProductImg/국내드라마_펜트하우스2_메인_포스터2.JPG" style="width:1800px; height:400px;">
 		</div>
 		
 		</div>
@@ -169,6 +181,6 @@ img {vertical-align: middle;}
 
 
 <%@include file="bottom.jsp"%>
-
+<%} %>
 </body>
 </html>

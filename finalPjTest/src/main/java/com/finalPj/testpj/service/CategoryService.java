@@ -23,6 +23,6 @@ public interface CategoryService {
 	public List<ProductDTO> abr_filmlist() throws Exception;
 	
 	// 검색
-	public List<ProductDTO> listsearch(String pName, String pImg, String keyword) throws Exception;
+	public List<ProductDTO> listsearch(String keyword) throws Exception;
 	
 }

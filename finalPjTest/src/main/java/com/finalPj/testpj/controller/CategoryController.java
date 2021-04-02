@@ -56,14 +56,20 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/listsearch", method=RequestMethod.GET)
-	public void search(Model model, @RequestParam(value="keyword", required=false, defaultValue="")String keyword) throws Exception {
+	public void search(Model model, @RequestParam(value="listkeyword", required=false, defaultValue="")String listkeyword) throws Exception {
 		
-		ProductDTO product = new ProductDTO();
+		System.out.println(listkeyword);
 		
-		List<ProductDTO> pdtlist = null; 
-		pdtlist = ctgService.listsearch(product.getpName(), product.getpImg(), keyword);
-		 
-		model.addAttribute("pdtlist", pdtlist);
+		
+		List<ProductDTO> search = null; 
+		
+		search = ctgService.listsearch(listkeyword);
+		
+		for(ProductDTO i:search) {
+			System.out.println(i.getpName());
+		}
+		
+		model.addAttribute("search", search);
 	}
 
 }

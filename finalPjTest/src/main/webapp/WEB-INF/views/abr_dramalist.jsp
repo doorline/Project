@@ -36,7 +36,7 @@ display:inline-block; margin:10px;
 		</c:forEach>
 	</ul>		
 	
-<%@include file="bottom.jsp"%>
+<%@include file="bottom.jsp"%> 
 
 </body>
 </html>

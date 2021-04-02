@@ -34,9 +34,7 @@ display:inline-block; margin:10px;
 			</form>
 		</li>
 		</c:forEach>
-	</ul>		
-	
-<%@include file="bottom.jsp"%>
-
+	</ul>
 </body>
+<%@include file="bottom.jsp"%>
 </html>

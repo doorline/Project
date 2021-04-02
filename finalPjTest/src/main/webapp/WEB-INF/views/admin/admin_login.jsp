@@ -13,7 +13,7 @@ width=device-width" />
 <title>Insert title here</title>
  
 </head>
-<%@ include file="../template/header.jsp" %>
+<%@ include file="../top.jsp" %>
 
  
  

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.finalPj.testpj.dto.MemberDTO" %>
+<%@ page import="com.finalPj.testpj.dto.AdminDTO" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
 <style>
 body {
-  background-color:black;
-  color: white;
   font-family: Arial, Helvetica, sans-serif;
   margin:0px;
 }
@@ -18,8 +18,6 @@ body {
 }
 
 .menu {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
   float: left;
   font-size: 20px;
   color: white;
@@ -44,8 +42,6 @@ body {
 }
 
 .dropdown .dropbtn {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
   font-size: 20px;  
   border: none;
   outline: none;
@@ -85,51 +81,39 @@ body {
 .rightmenu {
   float:right;
 }
+a:link{
+		text-decoration:none;
+		color: #fff;		
+		}
+	a:visited{
+		text-decoration:none;
+		color: #fff;
+		}
+	a:hover{
+		color: #fff;
+	}
 </style>
-
 </head>
 <body>
 
 	<div class="navbar">
-	 	<a  class="logo" href="/main_after" ><img src="<spring:url value ='/resources/Logo/logo_red.JPG'/>" width="150px" height="50"></a>
+	 	<a  class="logo" href="/main_after" ><img src="<spring:url value ='/resources/Logo/logo_red.JPG'/>" height="50px"></a>
 	  		  
-	  <div class="dropdown">
-	    <button class="dropbtn">드라마 
-	      <i class="fa fa-caret-down"></i>
-	    </button>
-	    <div class="dropdown-content">
-	      <a href="/dms_dramalist">국내 드라마</a>
-	      <a href="/abr_dramalist">해외 드라마</a>
-	    </div>
-	  </div>
-	  
-	  <div class="dropdown">
-	    <button class="dropbtn">영화 
-	      <i class="fa fa-caret-down"></i>
-	    </button>
-	    <div class="dropdown-content">
-	      <a href="/dms_filmlist">국내 영화</a>
-	      <a href="/abr_filmlist">해외 영화</a>
-	    </div>
-	  </div>
-	  
-	  <a class="menu" href="/favorite/favlist">찜한 콘텐츠</a>
-	  
-	  <a class="menu" href="/listsearch">검색하기</a>
-	  
 	  <div class="rightmenu">
 		  <div class="dropdown">
-		    <button class="dropbtn">${mId} 님
+		    <button class="dropbtn"><a href="/main_after">메인화면</a></button>
+		  </div>
+		  <div class="dropdown">
+		    <button class="dropbtn"><a href="/admin/list">리스트</a>
 		      <i class="fa fa-caret-down"></i>
 		    </button>
-		    <div class="dropdown-content">
-		      <a href="/member/detail">회원정보</a>
-		      <a href="/member/logout">로그아웃</a>
-		    </div>
-		    
 		  </div>
-		</div>
-		
+		   <div class="dropdown">
+		    <button class="dropbtn"><a href="/admin/adminLogout">로그아웃</a>
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		  </div>
+	  </div>
 	</div>
 
 	

@@ -40,9 +40,9 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public List<ProductDTO> listsearch(String pName, String pImg, String keyword) throws Exception {
+	public List<ProductDTO> listsearch(String keyword) throws Exception {
 
-		return cdao.listsearch(pName, pImg, keyword);
+		return cdao.listsearch(keyword);
 	}
 
 }

@@ -49,6 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	public void setSession(HttpSession session, MemberDTO dto) {
 		loginMembers.put(session.getId(), dto.getMid());
 		session.setAttribute("mid", dto.getMid());
+		session.setAttribute("dto", dto);
 	}
 
 	@Override

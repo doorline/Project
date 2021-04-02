@@ -65,7 +65,7 @@
 	.w100{width:100px;}
 </style>
 </head>
-	<%@include file="/WEB-INF/views/top.jsp"%>
+	<%@include file="../template/header.jsp"%>
 <body>
 
 		<h1 style="margin:0 0 0 30px;">작품 상세보기</h1>
