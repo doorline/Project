@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+
+{%load widget_tweaks%}
+
+{%block title%}photo_form.html{%endblock%}
+
+{%block content%}
+<br>
+<h1>Photo Create/Update - {{user}}</h1>
+<p class='font-italic'>creation or update form for Photo.</p>
+
+{%if form.errors%}
+	<div class='alert alert-danger'>
+		<div class='font-weight-bold'>Wrong! please correct the error(s) below.</div>
+		{{form.errors}}
+	</div>
+{%endif%}
+
+{%if form.is_multipart%}
+	<form enctype='multipart/form-data' action='' method='post' class='card pt-3'>
+{%else%}
+	<form action='.' method='post' class='card pt-3'>
+{%endif%}
+	{%csrf_token%}
+	<div class='form-group row' style='padding:10px;'>
+		{{form.album|add_label_class:'col-form-label col-sm-2 ml-3 font-weight-bold'}}
+		
+		<div class='col-sm-5' style='padding:0 0 5px 0;'>
+			{{form.album|add_class:'form-control'}}
+		</div>
+		
+		<div class='col-sm-2 my-auto' style='padding:0 0 0 10px;'>
+			<a href="{%url 'photo:album_add'%}" class='btn btn-outline-primary btn-sm'>
+				Add Album
+			</a>
+		</div>
+	</div>
+	
+	<div class='form-group row' style='padding:10px;'>
+		{{form.title|add_label_class:'col-form-label col-sm-2 ml-3 font-weight-bold'}}
+		<div class='col-sm-5' style='padding:0 0 5px 0;'>
+			{{form.title|add_class:'form-control'|attr:'autofocus'}}
+		</div>
+	</div>
+	
+	<div class='form-group row' style='padding:10px;'>
+		{{form.image|add_label_class:'col-form-label col-sm-2 ml-3 font-weight-bold'}}
+		<div class='col-sm-5' style='padding:0 0 5px 0;'>
+			{{form.image|add_class:'form-control-file'}}
+		</div>
+	</div>
+	
+	<div class='form-group row' style='padding:0 0 0 10px ;'>
+		{{form.description|add_label_class:'col-form-label col-sm-2 ml-3 font-weight-bold'}}
+		<div class='col-sm-8' style='padding:0 0 10px 0;'>
+			{{form.description|add_class:'form-control'|attr:'rows:3'}}
+		</div>
+	</div>
+		
+	<div class='form-group' style='padding:10px;'>
+		<div class='offset-sm-2 col-sm-5'>
+			<input type='submit' value='submit' class='btn btn-info'>
+		</div>
+	</div>
+</form>
+{%endblock%}
