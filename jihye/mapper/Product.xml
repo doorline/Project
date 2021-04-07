@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watching.mapper.Product">
+
+	<insert id="upload">
+ 		insert into PRODUCT(pCode, kCode, tCode, pName, aId, pContent, pUphit, pImg, pVod, pUploadDate) 
+				values (product_SEQ.nextval, #{kCode}, #{tCode}, #{pName}, #{aId}, #{pContent}, 0, #{pImg}, #{pVod},sysdate)
+	</insert>
+	
+	<select id="list" resultType="com.watching.dto.ProductDTO">
+		select * from (
+			select rownum rn, A.* from (
+				select * from product 
+					<trim prefix="where" prefixOverrides="AND |OR">
+						<if test='searchType=="pName" and keyword != null and keyword !="" '>
+							and pName like '%'||#{keyword}||'%'
+						</if>
+						<if test='searchType=="pContent" and keyword != null and keyword !="" '>
+							and pContent like '%'||#{keyword}||'%'
+						</if>
+					</trim>
+			order by pCode desc	) A		 
+			) where rn between #{start} and #{end}
+	</select>
+
+	<select id="cntList" parameterType="hashmap" resultType="int">
+		select count(*) from product
+		<trim prefix="where" prefixOverrides="AND |OR">
+			<if test='keyword != null and keyword !="" '>
+				<if test='searchType=="pName"'>
+					and pName like '%'||#{keyword}||'%'
+				</if>
+				<if test='searchType=="pContent"'>
+					and pContent like '%'||#{keyword}||'%'
+				</if>
+			</if>
+		</trim>
+	</select>
+	
+	<select id="view" resultType="com.watching.dto.ProductDTO">
+		select pCode, pName, kCode from PRODUCT where pCode=#{pCode}
+	</select>
+	
+	<update id="modify" parameterType="com.watching.dto.ProductDTO">
+		update PRODUCT set pName=#{pName}, kCode=#{kCode}, tCode=#{tCode}, aId=#{aId},
+				pImg=#{pImg}, pVod=#{pVod}, pUploadDate=sysdate, pContent=#{pContent}
+				where pCode=#{pCode}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from PRODUCT where pCode=#{pCode}
+	</delete>
+	
+</mapper>

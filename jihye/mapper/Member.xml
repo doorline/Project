@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.watching.mapper.Member">
+
+	<select id="memberLogin" resultType="String"> 
+		select mName from MEMBER where mId= #{mId} and mPw=#{mPw}
+	</select> 
+	
+	<insert id="memberJoin"> 
+		insert into MEMBER (mId, mCode, mPw, mName) values (#{mId}, MEMBER_SEQ.nextval, #{mPw}, #{mName})
+	</insert> 
+	
+	<select id="memberDetail" resultType="com.watching.dto.MemberDTO"> 
+		select * from MEMBER where mId=#{mId} 
+	</select> 
+	
+	<update id="memberEdit"> 
+		update MEMBER set mPw=#{mPw}, WHERE mId=#{mId} 
+	</update>
+	
+	<delete id="memberDelete"> 
+		delete from MEMBER where mId=#{mId}
+	</delete> 
+	
+	<select id="memberFindId" resultType="com.watching.dto.MemberDTO"> 
+		select id from MEMBER where mName=#{mName} 
+	</select> 
+	
+	<select id="memberFindPw" resultType="String"> 
+		select pw from MEMBER where mName=#{mName} and mId=#{mId} 
+	</select> 
+	
+	<select id="idCheck" resultType="int"> 
+		select count(*) from MEMBER where mId=#{mId} 
+	</select>
+
+</mapper>

@@ -1,14 +1,11 @@
-package com.finalPj.testpj.controller;
+package com.watching.controller;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.finalPj.testpj.common.PagingVO;
-import com.finalPj.testpj.common.SearchVO;
-import com.finalPj.testpj.dto.ProductDTO;
-import com.finalPj.testpj.service.ProductService;
-
+import com.watching.dto.ProductDTO;
+import com.watching.dto.SearchVO;
+import com.watching.service.ProductService;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -34,8 +29,6 @@ public class ProductController {
 	@Inject
 	ProductService productService;
 	
-	
-	
 	//기능 upload(insert),list,delete,update(modify),uphit, detailView
 	
 	//리스트 화면 출력
@@ -43,8 +36,7 @@ public class ProductController {
 	public String list(Model model, SearchVO vo,
 				@RequestParam(value="nowPage", required=false)String nowPage,
 				@RequestParam(value="searchType", required=false)String searchType,
-				@RequestParam(value="keyword", required=false)String keyword,
-				HttpServletRequest request) throws Exception{
+				@RequestParam(value="keyword", required=false)String keyword) throws Exception{
 		//페이징
 		int cntPerPage=10;
 		
@@ -59,25 +51,18 @@ public class ProductController {
 		vo = new SearchVO(total, Integer.parseInt(nowPage), cntPerPage);
 		vo.setSearchType(searchType);
 		vo.setKeyword(keyword);
-		
-		//세션유지
-		HttpSession session = request.getSession();
-		String aid = (String)session.getAttribute("aid");
+		System.out.println(vo);
 		
 		model.addAttribute("search", vo);
 		model.addAttribute("paging", vo);
 		model.addAttribute("dtos", productService.list(vo));
-		model.addAttribute("aid", aid);
 		
 		return "/admin/list";
 	}
 	
 	//업로드 화면 출력, 리스트에서 업로드 버튼을 누르면 나오는 화면
 	@RequestMapping("uploadView")
-	public String uploadView(Model model, HttpServletRequest request) throws Exception{
-		HttpSession session = request.getSession();
-		model.addAttribute("aid", session.getAttribute("aid"));
-		
+	public String uploadView(Model model) throws Exception{
 		return "/admin/uploadView";
 	}
 	
@@ -122,12 +107,8 @@ public class ProductController {
 	}
 	//modifyView
 	@RequestMapping("modifyView")
-	public String modifyView(Model model, @RequestParam("pCode")int pCode,
-			HttpServletRequest request) throws Exception{
-		HttpSession session = request.getSession();
-		
+	public String modifyView(Model model, @RequestParam("pCode")int pCode) throws Exception{
 		model.addAttribute("view", productService.view(pCode));
-		model.addAttribute("aId",session.getAttribute("aid"));
 		return "/admin/modifyView";
 	}
 	
@@ -143,6 +124,7 @@ public class ProductController {
 		System.out.println(bfDto.getpVod());
 		
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
+		
 		//이미지 변경
 		String pImg="";
 		if(!imgFile.getOriginalFilename().isEmpty()) {
@@ -156,6 +138,7 @@ public class ProductController {
 			//사진변경 안함
 			pImg = bfDto.getpImg();
 		}
+		
 		//vod 변경
 		String pVod="";
 		if(!vodFile.getOriginalFilename().isEmpty()) {
@@ -215,4 +198,3 @@ public class ProductController {
 	
 	
 }
-		

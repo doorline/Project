@@ -1,29 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.finalPj.testpj.dto.ProductDTO" %>
-<%@ page import="com.finalPj.testpj.dto.MemberDTO" %>
-<%@ page import="com.finalPj.testpj.service.CategoryService" %>
+<%@ page import="com.watching.dto.ProductDTO" %>
+<%@ page import="com.watching.dto.MemberDTO" %>
+<%@ page import="com.watching.service.CategoryService" %>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.apache.ibatis.session.SqlSession"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="bodyStyle.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>메인 (로그인 후)</title>
 <style>
+html, body {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  font-family: Verdana, sans-serif;
+}
+main.container-fluid {
+  min-height: 100%;
+}
 ul li {
 display:inline-block; 
 margin:5px;
 }
+li:nth-of-type(n+7) {
+  display: none;
+}
 h4 {
 margin:10px;
 }
+a, a:link, a:visited {
+  color: white;
+  text-decoration: none;
+  algin: center;
+}
 
 * {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
-/* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position:relative;
@@ -63,33 +80,29 @@ img {vertical-align: middle;}
   to {opacity: 1}
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
+@media (max-width: 1300px) {
+  li:nth-of-type(n+4) {
+ 	display: none;
+	}
+}
+@media (max-width: 720px) {
+  li:nth-of-type(n+3) {
+ 	display: none;
+	}
 }
 </style>
 </head>
 <body>
 
-<%@include file="top.jsp"%>
+<main class="container-fluid">
+<%@include file="./template/top.jsp"%>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
 <c:set var="ddl" value="${dms_dramalist}"/>
 <c:set var="adl" value="${abr_dramalist}"/>
 <c:set var="dfl" value="${dms_filmlist}"/>
 <c:set var="afl" value="${abr_filmlist}"/>
 
-<%
-	MemberDTO dto = (MemberDTO)session.getAttribute("dto");
-	String aId = (String)session.getAttribute("aid");
-	if(dto==null && aId==null){
-		%>
-		<script>
-		alert('Watching 로그인 후 이용해주세요');
-		document.location.href="/";
-		</script>
-		<%} else {
-%>
-
+	<div id="container">
 	<h4>신작</h4>
 	
 	<div class="slideshow-container">
@@ -137,13 +150,13 @@ img {vertical-align: middle;}
 		}
 		</script>
 	
-	
+	<div id="contents_list">
 	<h4>국내 드라마</h4>
 		<ul>
 		<c:forEach items="${dms_dramalist}" var="ddl" varStatus="status">
 		<li>
-			<div class="pImg"><a href=""><img src="/resources/ProductImg/${ddl.pImg}" style="width:200px; height:200px;"></a></div>
-			<div class="pName"><a href="">${ddl.pName}</a></div>
+			<div class="pImg"><a href="/vodplay"><img src="/resources/ProductImg/${ddl.pImg}" style="width:290px; height:200px;"></a></div>
+			<div class="pName"><a href="/vodplay">${ddl.pName}</a></div>
 		</li>
 		</c:forEach>
 	</ul>				
@@ -152,19 +165,18 @@ img {vertical-align: middle;}
 		<ul>
 		<c:forEach items="${abr_dramalist}" var="adl" varStatus="status">
 		<li>
-			<div class="pImg"><a href=""><img src="/resources/ProductImg/${adl.pImg}" style="width:200px; height:200px;"></a></div>
-			<div class="pName"><a href="">${adl.pName}</a></div>
+			<div class="pImg"><a href="/vodplay"><img src="/resources/ProductImg/${adl.pImg}" style="width:290px; height:200px;"></a></div>
+			<div class="pName"><a href="/vodplay">${adl.pName}</a></div>
 		</li>
 		</c:forEach>
 	</ul>				
-		
 		
 	<h4>국내 영화</h4>
 		<ul>
 		<c:forEach items="${dms_filmlist}" var="dfl" varStatus="status">
 		<li>
-			<div class="pImg"><a href=""><img src="/resources/ProductImg/${dfl.pImg}" style="width:200px; height:200px;"></a></div>
-			<div class="pName"><a href="">${dfl.pName}</a></div>
+			<div class="pImg"><a href="/vodplay"><img src="/resources/ProductImg/${dfl.pImg}" style="width:290px; height:200px;"></a></div>
+			<div class="pName"><a href="/vodplay">${dfl.pName}</a></div>
 		</li>
 		</c:forEach>
 	</ul>				
@@ -174,14 +186,18 @@ img {vertical-align: middle;}
 		<ul>
 		<c:forEach items="${abr_filmlist}" var="afl" varStatus="status">
 		<li>
-			<div class="pImg"><a href=""><img src="/resources/ProductImg/${afl.pImg}" style="width:200px; height:200px;"></a></div>
-			<div class="pName"><a href="">${afl.pName}</a></div>
+			<div class="pImg"><a href="/vodplay"><img src="/resources/ProductImg/${afl.pImg}" style="width:290px; height:200px;"></a></div>
+			<div class="pName"><a href="/vodplay">${afl.pName}</a></div>
 		</li>
 		</c:forEach>
 	</ul>				
+	</div>
+	
+	</div>
 
 
-<%@include file="bottom.jsp"%>
-<%} %>
+</main>>
+<%@include file="./template/bottom.jsp"%>
+
 </body>
 </html>

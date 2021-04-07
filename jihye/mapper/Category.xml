@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watching.mapper.Category">
+
+	<select id="dms_dramalist" resultType="com.watching.dto.ProductDTO">
+		select * from product where kCode='국내드라마' order by pCode desc
+	</select>
+	
+	<select id="abr_dramalist" resultType="com.watching.dto.ProductDTO">
+		select * from product where kCode='해외드라마' order by pCode desc
+	</select>
+	
+	<select id="dms_filmlist" resultType="com.watching.dto.ProductDTO">
+		select * from product where kCode='국내영화' order by pCode desc
+	</select>
+	
+	<select id="abr_filmlist" resultType="com.watching.dto.ProductDTO">
+		select * from product where kCode='해외영화' order by pCode desc
+	</select>
+	
+	<select id="play" resultType="com.watching.dto.ProductDTO">
+		select pCode, pName, pVod from PRODUCT where pCode=#{pCode}
+	</select>
+	
+	
+	<select id="countSearch" resultType="int">
+		select count(pCode) from PRODUCT
+		<include refid="search"></include>
+			<![CDATA[and pCode > 0]]>
+	</select>
+	
+	<select id="listsearch" parameterType="hashMap" resultType="com.watching.dto.ProductDTO">
+		select pName, pImg from PRODUCT where pName LIKE '%'|| #{listkeyword} ||'%' order by pCode desc
+	</select>
+	
+	<sql id="search">
+		<if test="listkeyword != null and listkeyword != ''">where pName like '%'|| #{listkeyword} ||'%'</if>
+	</sql>
+	
+</mapper>

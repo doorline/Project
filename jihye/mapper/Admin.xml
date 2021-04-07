@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.watching.mapper.Admin">
+	
+	<!-- 로그인 관련 mapper-->
+	<select id="login_check" resultType="String">
+		select aName from ADMIN where aId=#{aId} and aPw=#{aPw}
+	</select>
+
+	<!-- 회원 강제탈퇴관련 mapper -->
+	<delete id="admin_member_forced_evictionCheck" parameterType="com.watching.dto.MemberDTO">
+		delete from MEMBER where mId=#{mId, jdbcType=VARCHAR}
+	</delete>
+    
+</mapper>
