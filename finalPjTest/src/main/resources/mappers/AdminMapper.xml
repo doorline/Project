@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.finalPj.testpj.adminMapper">
+<mapper namespace="com.finalPj.testpj.AdminMapper">
 	<!-- 로그인 관련 mapper-->
     <select id = "login_check" resultType="String">
         select aname from admin
-        where aid=#{aid} and apw=#{apw}
+        where aid=#{aId} and apw=#{aPw}
     </select>    
  
     <!-- 회원 강제탈퇴관련 mapper -->
     <delete id="admin_member_forced_evictionCheck" parameterType="com.finalPj.testpj.dto.MemberDTO">
     delete from member
-    where mid = #{mid, jdbcType=VARCHAR}
+    where mid = #{mId, jdbcType=VARCHAR}
     </delete>
 </mapper>

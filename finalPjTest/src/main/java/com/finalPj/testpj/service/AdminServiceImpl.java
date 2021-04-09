@@ -17,28 +17,25 @@ import com.finalPj.testpj.dto.MemberDTO;
 public class AdminServiceImpl implements AdminService {
 	
 	@Inject    //dao를 호출하기때문에 의존성을 주입한다.
-    private AdminDAO admindao;
+    AdminDAO adao;
 
-	@Autowired
-	private static Hashtable<String, String> loginAdmins = new Hashtable<String, String>();
-	
 	@Override
-	public boolean loginCheck(AdminDTO dto, HttpSession session) throws Exception {
-		boolean result = admindao.loginCheck(dto);
+	public boolean loginCheck(AdminDTO adto, HttpSession session) throws Exception {
+		
+		boolean result = adao.loginCheck(adto);
 		
 		if(result) {
-			session.setAttribute("aid", dto.getAid());
-			session.setAttribute("spw", dto.getApw());
+			session.setAttribute("aId", adto.getaId());
+			session.setAttribute("aPw", adto.getaPw());
 		}
 		
 		return result;
 	}
-	
 
 	@Override
-	public void admin_member_forced_evictionCheck(MemberDTO dto) throws Exception {
+	public void admin_member_forced_evictionCheck(MemberDTO mdto) throws Exception {
 		
-
+		//adao.admin_member_forced_evictionCheck(mdto);
 	}
 
 }

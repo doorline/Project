@@ -6,11 +6,11 @@
 	
 	<!-- 테스트를 위한 favlist query-->
 	<select id="favlist" resultType="com.finalPj.testpj.dto.FavoriteDTO">
-		select f.fCode, p.pCode, p.pName, p.pImg from FAVORITE f, PRODUCT p where p.pCode=f.pCode and f.mId='testuser' order by fCode desc
+		select f.fCode, f.mId, p.pCode, p.pName, p.pImg from FAVORITE f, PRODUCT p, MEMBER m where p.pCode=f.pCode and f.mId=m.mId and f.mId=#{mId} order by fCode desc
 	</select>
 	
 	<insert id="addfav" parameterType="com.finalPj.testpj.dto.FavoriteDTO">
-		insert into FAVORITE (fCode, pCode, mId) values (FAVORITE_SEQ.nextval, #{pCode}, 'testuser') 
+		insert into FAVORITE (fCode, pCode, mId) values (FAVORITE_SEQ.nextval, #{pCode}, #{mId}) 
  	</insert>
 	
 	<delete id="deletefav">

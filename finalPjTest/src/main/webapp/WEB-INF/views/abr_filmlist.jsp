@@ -19,7 +19,7 @@ display:inline-block; margin:10px;
 </head>
 <body>
 
-<%@include file="top.jsp"%>
+<%@include file="/WEB-INF/views/template/top.jsp"%>
 
 	<h3>해외 영화</h3>
 
@@ -36,7 +36,7 @@ display:inline-block; margin:10px;
 		</c:forEach>
 	</ul>				
 	
-<%@include file="bottom.jsp"%>
+<%@include file="/WEB-INF/views/template/bottom.jsp"%>
 
 </body>
 </html>

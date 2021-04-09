@@ -3,87 +3,77 @@ package com.finalPj.testpj.dto;
 import java.sql.Date;
 
 public class MemberDTO {
-	public String mid;
-	public long mcode;
-	public String mpw;
-	public Date mmemsdate;
-	public String mstate;
-	public long mscode;
-	public String mname;
+	public String mId;
+	public long mCode;
+	public String mPw;
+	public Date mMemsDate;
+	public String mState;
+	public long msCode;
+	public String mName;
 	
 	public MemberDTO() {}
-	
-	public MemberDTO(String mid, long mcode, String mpw, Date mmemsdate, String mstate, long mscode, String mname) {
-		super();
-		this.mid = mid;
-		this.mcode = mcode;
-		this.mpw = mpw;
-		this.mmemsdate = mmemsdate;
-		this.mstate = mstate;
-		this.mscode = mscode;
-		this.mname = mname;
+
+	public String getmId() {
+		return mId;
 	}
 
-	public String getMid() {
-		return mid;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
-	public void setMid(String mid) {
-		this.mid = mid;
+	public long getmCode() {
+		return mCode;
 	}
 
-	public long getMcode() {
-		return mcode;
+	public void setmCode(long mCode) {
+		this.mCode = mCode;
 	}
 
-	public void setMcode(long mcode) {
-		this.mcode = mcode;
+	public String getmPw() {
+		return mPw;
 	}
 
-	public String getMpw() {
-		return mpw;
+	public void setmPw(String mPw) {
+		this.mPw = mPw;
 	}
 
-	public void setMpw(String mpw) {
-		this.mpw = mpw;
+	public Date getmMemsDate() {
+		return mMemsDate;
 	}
 
-	public Date getMmemsdate() {
-		return mmemsdate;
+	public void setmMemsDate(Date mMemsDate) {
+		this.mMemsDate = mMemsDate;
 	}
 
-	public void setMmemsdate(Date mmemsdate) {
-		this.mmemsdate = mmemsdate;
+	public String getmState() {
+		return mState;
 	}
 
-	public String getMstate() {
-		return mstate;
+	public void setmState(String mState) {
+		this.mState = mState;
 	}
 
-	public void setMstate(String mstate) {
-		this.mstate = mstate;
+	public long getMsCode() {
+		return msCode;
 	}
 
-	public long getMscode() {
-		return mscode;
+	public void setMsCode(long msCode) {
+		this.msCode = msCode;
 	}
 
-	public void setMscode(long mscode) {
-		this.mscode = mscode;
+	public String getmName() {
+		return mName;
 	}
 
-	public String getMname() {
-		return mname;
-	}
-
-	public void setMname(String mname) {
-		this.mname = mname;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [mid=" + mid + ", mcode=" + mcode + ", mpw=" + mpw + ", mmemsdate=" + mmemsdate + ", mstate="
-				+ mstate + ", mscode=" + mscode + ", mname=" + mname + "]";
+		return "MemberDTO [mId=" + mId + ", mCode=" + mCode + ", mPw=" + mPw + ", mMemsdate=" + mMemsDate + ", mState="
+				+ mState + ", msCode=" + msCode + ", mName=" + mName + "]";
 	}
+
 
 }

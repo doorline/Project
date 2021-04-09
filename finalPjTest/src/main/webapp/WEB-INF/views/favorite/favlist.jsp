@@ -10,15 +10,23 @@
 <title>찜한 콘텐츠</title>
 
 <style>
+html, body {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  font-family: Verdana, sans-serif;
+}
+main.container-fluid {
+  min-height: 100%;
+}
 .favlist_li {
   display:inline-block; margin:10px;
 }
 .productName {
 }
 .deletefav_btn {
-  background-color:red;
-  padding:5px;
-  color:white;
+  background-color: red;
+  padding: 5px;
+  color: white;
 }
 a, a:link, a:visited {
   color: white;
@@ -30,8 +38,8 @@ a, a:link, a:visited {
 </head>
 <body>
 
-
-<%@include file="../top.jsp"%>
+<main class="container-fluid">
+<%@include file="/WEB-INF/views/template/top.jsp"%>
 
 	<h3>찜한 콘텐츠</h3>
 	<c:choose>
@@ -53,7 +61,9 @@ a, a:link, a:visited {
 		</c:otherwise>
 	</c:choose>
 	
-<%@include file="../bottom.jsp"%>
+</main>
+	
+<%@include file="/WEB-INF/views/template/bottom.jsp"%>
 	
 </body>
 </html>

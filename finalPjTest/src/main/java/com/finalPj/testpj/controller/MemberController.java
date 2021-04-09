@@ -36,7 +36,7 @@ public class MemberController {
 		if (result == true) {
 			mav.setViewName("redirect:/main_after");
 		} else {
-			mav.setViewName("/main_before");
+			mav.setViewName("/member/MemberLogin");
 		}
 		return mav;
 	}
@@ -50,14 +50,16 @@ public class MemberController {
 	// 회원가입
 	@RequestMapping("/join") 
 	public String memberJoin(@ModelAttribute MemberDTO dto) throws Exception {
-		 service.memberJoin(dto); return "redirect:/member/loginPage"; 
+		 service.memberJoin(dto); 
+		 
+		 return "redirect:/"; 
 	} 
 	
 	// 아이디 중복 검사
 	@RequestMapping("/idCheck")
-	public void idCheck(@RequestParam String mid, HttpServletResponse res) throws Exception {
+	public void idCheck(@RequestParam String mId, HttpServletResponse res) throws Exception {
 		int result = 0;
-		if (service.idCheck(mid) != 0) {
+		if (service.idCheck(mId) != 0) {
 			result = 1;
 		}
 		res.getWriter().print(result);
@@ -65,33 +67,35 @@ public class MemberController {
 
 	// 회원 정보
 	@RequestMapping("/detail") 
-	public ModelAndView memberDetail(@RequestParam String mid) throws Exception { 
-		ModelAndView mav = new  ModelAndView(); 
-		mav.setViewName("/member/MemberDetail");
-		mav.addObject("memberDetail", service.memberDetail(mid)); 
-		return mav;  
+	public ModelAndView memberDetail(@RequestParam String mId) throws Exception { 
+		
+		ModelAndView mav = new
+		 ModelAndView(); mav.setViewName("/member/MemberDetail");
+		 mav.addObject("memberDetail", service.memberDetail(mId)); 
+		 return mav; 
 		 }
 	
 	// 정보 수정 페이지 
 	@RequestMapping("/editPage") 
-	public ModelAndView memberEditPage(@RequestParam String mid) throws Exception { 
+	public ModelAndView memberEditPage(@RequestParam String mId) throws Exception { 
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("/member/MemberEdit");
-		mav.addObject("memberEdit", service.memberDetail(mid)); 
+		mav.addObject("memberEdit", service.memberDetail(mId)); 
 		return mav; 
 	} 
 	
 	 // 정보 수정
-	 @RequestMapping("/edit") public String memberEdit(@ModelAttribute MemberDTO dto) throws Exception { 
-		 service.memberEdit(dto); 
-		 return "redirect:/member/detail?mid="+ dto.getMid();
+	 @RequestMapping("/edit") public String memberEdit(@ModelAttribute MemberDTO dto)
+	 throws Exception { service.memberEdit(dto); 
+	 return "redirect:/member/detail?mid="
+	 + dto.getmId();
 	 } 
 	 
 	 // 회원 삭제 
 	 @RequestMapping("delete")
-	 public String memberDelete(@RequestParam String mid, HttpSession session) throws Exception {
-		 service.memberDelete(mid, session);
-		 return "redirect:/member/loginPage"; 
+	 public String memberDelete(@RequestParam String mId, HttpSession session) throws Exception {
+	 service.memberDelete(mId, session);
+	 return "redirect:/member/loginPage"; 
 	 } 
 	 
 	 // 로그아웃
@@ -113,8 +117,9 @@ public class MemberController {
 	 } 
 	 
 	 // 비밀번호 찾기 페이지 
-	 @RequestMapping("/findPwPage") public  String memberFindPwPage() { 
-		 return "/member/MemberFindPw"; 
+	 @RequestMapping("/findPwPage") public
+	 String memberFindPwPage() { 
+	 return "/member/MemberFindPw"; 
 	 } 
 	 
 	 // 아이디 찾기
@@ -122,10 +127,10 @@ public class MemberController {
 	 public ModelAndView memberFindId(@ModelAttribute MemberDTO dto) throws Exception { 
 		 ModelAndView mav = new ModelAndView();
 		 List<MemberDTO> memberList = service.memberFindId(dto);
-		 System.out.println(memberList); 
-		 mav.setViewName("/member/Membermid");
-		 mav.addObject("memberFindId", memberList); 
-		 return mav; 
+	 System.out.println(memberList); 
+	 mav.setViewName("/member/Membermid");
+	 mav.addObject("memberFindId", memberList); 
+	 return mav; 
 	 } 
 	 
 	 // 비밀번호 찾기
@@ -134,7 +139,6 @@ public class MemberController {
 		 ModelAndView mav = new ModelAndView(); 
 		 String mpw = service.memberFindPw(dto); mav.setViewName("/member/MemberPw");
 		 mav.addObject("memberFindPw", mpw); 
-		 return mav; 
-	} 
+		 return mav; } 
 
 }

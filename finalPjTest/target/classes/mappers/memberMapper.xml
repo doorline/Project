@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.finalPj.testpj.memberMapper">
+<mapper namespace="com.finalPj.testpj.MemberMapper">
 
 <select id="memberLogin" resultType="String"> 
-	SELECT mname from member WHERE MID= #{mid} AND MPW=#{mpw}
+	SELECT mname from member WHERE MID= #{mId} AND MPW=#{mPw}
 </select> 
 
 <insert id="memberJoin"> 
-INSERT INTO member (mid, mcode, mpw, mname) values (#{mid}, member_seq.nextval, #{mpw}, #{mname})
+INSERT INTO member (mid, mcode, mpw, mname, msCode, mMemsDate, mState)
+	values (#{mId}, member_seq.nextval, #{mPw}, #{mName}, #{msCode}, sysdate, 'Joined')
 </insert> 
 
 <select id="memberDetail" resultType="com.finalPj.testpj.dto.MemberDTO"> 
-SELECT * from member WHERE mid=#{mid} 
+SELECT * from member WHERE mid=#{mId} 
 </select> 
 
 <update id="memberEdit"> 
-UPDATE member SET mpw=#{mpw}, WHERE mid=#{mid} 
+UPDATE member SET mpw=#{mPw}, WHERE mid=#{mId} 
 </update> 
 
 <delete id="memberDelete"> 
-DELETE from member WHERE mid=#m{id}
+DELETE from member WHERE mid=#{mId}
 </delete> 
 
 <select id="memberFindId" resultType="com.finalPj.testpj.dto.MemberDTO"> 
-SELECT id from member WHERE mname=#{mname} 
+SELECT id from member WHERE mname=#{mName} 
 </select> 
 
 <select id="memberFindPw" resultType="String"> 
-SELECT pw from member WHERE mname=#{mname} and mid=#{mid} 
+SELECT pw from member WHERE mname=#{mName} and mid=#{mId} 
 </select> 
 
 <select id="idCheck" resultType="int"> 
-SELECT count(*) from member WHERE mid=#{mid} 
+SELECT count(*) from member WHERE mid=#{mId} 
 </select>
 
 </mapper>

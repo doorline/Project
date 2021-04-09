@@ -3,20 +3,24 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<meta charset="UTF-8">
 <style>
 body {
   background-color:black;
+  margin: 0;
+  height: 100%;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   margin:0px;
 }
-
+html {
+  height: 100%;
+}
 .navbar {
   overflow: hidden;
   padding:20px;
   background-color: black;
 }
-
 .menu {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -27,7 +31,6 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 .logo {
   margin:10px 10px;
   float: left;
@@ -37,12 +40,10 @@ body {
   padding: 0px;
   text-decoration: none;
 }
-
 .dropdown {
   float: left;
   overflow: hidden;
 }
-
 .dropdown .dropbtn {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -55,11 +56,9 @@ body {
   font-family: inherit;
   margin: 0;
 }
-
 .menu:hover, .dropdown:hover .dropbtn {
   background-color: red;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -68,7 +67,6 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 .dropdown-content a {
   float: none;
   color: white;
@@ -77,11 +75,9 @@ body {
   display: block;
   text-align: left;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 .rightmenu {
   float:right;
 }
@@ -119,8 +115,14 @@ body {
 	  
 	  <div class="rightmenu">
 		  <div class="dropdown">
-		    <button class="dropbtn">${mId} 님
-		      <i class="fa fa-caret-down"></i>
+		    <button class="dropbtn">
+		    <c:if test="${aId != null }">
+				${aId} 님
+		    </c:if>
+		     <c:if test="${mId != null }">
+				${mId} 님
+		    </c:if>
+				<i class="fa fa-caret-down"></i>
 		    </button>
 		    <div class="dropdown-content">
 		      <a href="/member/detail">회원정보</a>

@@ -8,22 +8,28 @@ import com.finalPj.testpj.dto.MemberDTO;
 
 public interface MemberService {
 	
+	// 회원가입
+	public void memberJoin(MemberDTO dto) throws Exception;
+		
+	// 로그인
 	public boolean memberLogin(MemberDTO dto, HttpSession session) throws Exception;
 
-	public void memberJoin(MemberDTO dto) throws Exception;
+	// 로그아웃
+	public void memberLogout(HttpSession session) throws Exception;
+		
+	// 회원정보 보기
+	public MemberDTO memberDetail(String mId) throws Exception;
 
-	public MemberDTO memberDetail(String mid) throws Exception;
-
+	// 회원정보 수정
 	public void memberEdit(MemberDTO dto) throws Exception;
 
-	public void memberDelete(String mid, HttpSession session) throws Exception;
-
-	public void memberLogout(HttpSession session) throws Exception;
+	// 회원 탈퇴
+	public void memberDelete(String mId, HttpSession session) throws Exception;
 
 	public List<MemberDTO> memberFindId(MemberDTO dto) throws Exception;
 
 	public String memberFindPw(MemberDTO dto) throws Exception;
 
-	public int idCheck(String mid) throws Exception;
+	public int idCheck(String mId) throws Exception;
 
 }

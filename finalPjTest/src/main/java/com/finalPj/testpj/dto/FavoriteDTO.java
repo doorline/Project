@@ -12,16 +12,6 @@ public class FavoriteDTO {
 	public FavoriteDTO() {}
 
 
-	public FavoriteDTO(int fCode, String mId, int pCode, String pName, String pImg) {
-		super();
-		this.fCode = fCode;
-		this.mId = mId;
-		this.pCode = pCode;
-		this.pName = pName;
-		this.pImg = pImg;
-	}
-
-
 	public int getfCode() {
 		return fCode;
 	}
@@ -60,7 +50,8 @@ public class FavoriteDTO {
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-	
+
+
 	public String getpImg() {
 		return pImg;
 	}
@@ -73,7 +64,8 @@ public class FavoriteDTO {
 
 	@Override
 	public String toString() {
-		return "FavoriteDTO [fCode=" + fCode + ", mId=" + mId + ", pCode=" + pCode + ", pName=" + pName + ", pImg=" + pImg + "]";
+		return "FavoriteDTO [fCode=" + fCode + ", mId=" + mId + ", pCode=" + pCode + ", pName=" + pName + ", pImg="
+				+ pImg + "]";
 	}
 
 

@@ -178,5 +178,5 @@
 	</div>
 	</form>
 </body>
-	<%@include file="/WEB-INF/views/bottom.jsp"%>
+	<%@include file="/WEB-INF/views/template/bottom.jsp"%>
 </html>

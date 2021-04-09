@@ -13,7 +13,7 @@ width=device-width" />
 <title>Insert title here</title>
  
 </head>
-<%@ include file="../top.jsp" %>
+<%@ include file="/WEB-INF/views/template/top.jsp" %>
 
  
  
@@ -38,8 +38,8 @@ width=device-width" />
 <form action ="/admin/admin_login.do" method = "post">
 <center>
 <br>
--관리자 아이디- <input type = "text" name="aid" placeholder="  ID를 입력하세요 "><br><br>
--관리자 비밀번호- <input type = "password" name="apw" placeholder="  비밀번호를 입력하세요 "><br><br>
+-관리자 아이디- <input type = "text" name="aId" placeholder="  ID를 입력하세요 "><br><br>
+-관리자 비밀번호- <input type = "password" name="aPw" placeholder="  비밀번호를 입력하세요 "><br><br>
 <button type = "submit" name = "submit" >로그인</button>
  
 <br>

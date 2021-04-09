@@ -86,7 +86,7 @@
 		<div class="row">
 			<span class="b_menu">관리자Id</span>
  			<span class="content">
- 				<input type="text" name="aId" size="50" value="${aid}" class="form-control">
+ 				<input type="text" name="aId" size="50" value="${aId}" class="form-control">
  			</span>
 		</div>
 		<div class="row">
@@ -181,5 +181,5 @@
 	</div>
 	</form>	
 </body>
-	<%@include file="/WEB-INF/views/bottom.jsp"%>
+	<%@include file="/WEB-INF/views/template/bottom.jsp"%>
 </html>

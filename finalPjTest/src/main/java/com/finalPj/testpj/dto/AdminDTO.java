@@ -1,30 +1,34 @@
 package com.finalPj.testpj.dto;
 
 public class AdminDTO {
-	public String aid;
-	public String apw;
-	public String aname;
-	public String getAid() {
-		return aid;
+	public String aId;
+	public String aPw;
+	public String aName;
+	
+	
+	public String getaId() {
+		return aId;
 	}
-	public void setAid(String aid) {
-		this.aid = aid;
+	public void setaId(String aId) {
+		this.aId = aId;
 	}
-	public String getApw() {
-		return apw;
+	public String getaPw() {
+		return aPw;
 	}
-	public void setApw(String apw) {
-		this.apw = apw;
+	public void setaPw(String aPw) {
+		this.aPw = aPw;
 	}
-	public String getAname() {
-		return aname;
+	public String getaName() {
+		return aName;
 	}
-	public void setAname(String aname) {
-		this.aname = aname;
+	public void setaName(String aName) {
+		this.aName = aName;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "AdminDTO [aid=" + aid + ", apw=" + apw + ", aname=" + aname + "]";
+		return "AdminDTO [aId=" + aId + ", aPw=" + aPw + ", aName=" + aName + "]";
 	}
 
 }

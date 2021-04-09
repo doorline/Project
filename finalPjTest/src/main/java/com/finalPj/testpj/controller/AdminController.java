@@ -32,24 +32,24 @@ public class AdminController {
 	// 관리자 로그인 페이지에서 관리자 아이디와 패스워드를 입력후 로그인 버튼을 누를시에 맵핑되는 메소드
 	// 관리자 로그인을 할 수 있도록 한다.
 	@RequestMapping("/admin/admin_login.do")
-	public ModelAndView admin_login(String aid, String apw, HttpSession session) throws Exception {
+	public ModelAndView admin_login(String aId, String aPw, HttpSession session) throws Exception {
 
 		// 로그인 체크도 같이 함
 		// dto에 값들을 넣기 위해 객체를 생성한다.
-		AdminDTO dto = new AdminDTO();
+		AdminDTO adto = new AdminDTO();
 
-		dto.setAid(aid);
-		dto.setApw(apw);
+		adto.setaId(aId);
+		adto.setaPw(aPw);
 
 		// 로그인 체크를 하기위한 메소드, 로그인 체크후 결과를 result 변수에 넣는다.
-		boolean result = adminservice.loginCheck(dto, session);
+		boolean result = adminservice.loginCheck(adto, session);
 		ModelAndView mav = new ModelAndView();
 		System.out.println(result);
 		if (result) {// 로그인이 성공했을시 출력되는 구문
 			mav.setViewName("redirect:/admin/list"); // 로그인이 성공했을시 이동하게되는 뷰의 이름
-			mav.addObject("aid", session.getAttribute(aid));
+			mav.addObject("aId", session.getAttribute(aId));
 
-		} else if (session.getAttribute(aid) == null) { // 로그인 실패 했을시 출력
+		} else if (session.getAttribute(aId) == null) { // 로그인 실패 했을시 출력
 
 			// 로그인이 실패했을 시에 다시 관리자 로그인 페이지로 이동함
 			mav.setViewName("/admin/admin_login");
@@ -71,18 +71,18 @@ public class AdminController {
 
 	// 관리자로 로그인 후에 강제 탈퇴시킬 회원의 아이디를 입력후 강제탈퇴 버튼을 누르면 연결되는 메소드
 	@RequestMapping("/admin/admin_member_forced_eviction.do")
-	public ModelAndView admin_member_forced_eviction(String mid) throws Exception {
+	public ModelAndView admin_member_forced_eviction(String mId) throws Exception {
 
 		// 유저의 아이디를 삭제 (강제탈퇴) 시키기위해서 dto에 담는다.
-		MemberDTO dto = new MemberDTO();
-		dto.setMid(mid);;
+		MemberDTO mdto = new MemberDTO();
+		mdto.setmId(mId);;
 
 		// 회원탈퇴 체크를 하기위한 메소드, 탈퇴 시키려는 회원의 아이디가 있는지 검사한후에 result 변수에 저장한다.
-		adminservice.admin_member_forced_evictionCheck(dto);
+		adminservice.admin_member_forced_evictionCheck(mdto);
 
 		ModelAndView mav = new ModelAndView();
 
-		if (dto.getMid() != null) { // 회원 강제탈퇴가 성공했을시 출력되는 뷰
+		if (mdto.getmId() != null) { // 회원 강제탈퇴가 성공했을시 출력되는 뷰
 
 			mav.setViewName("home");
 
@@ -105,5 +105,6 @@ public class AdminController {
 		
 		return "redirect:/";
 	}
+
 
 }

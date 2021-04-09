@@ -13,7 +13,7 @@
 <title>회원가입</title>
 <style>
 html {
-    height: 100%;
+  height: 100%;
 }
 body {
   background-color:black;
@@ -22,19 +22,16 @@ body {
   height: 100%;
   font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
-
 .navbar {
   overflow: hidden;
   padding:20px;
   background-color: black;
 }
-
 a, a:link, a:visited {
   color: white;
   text-decoration: none;
   algin: center;
 }
-
 .menu {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -45,7 +42,6 @@ a, a:link, a:visited {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 .logo {
   margin:10px 10px;
   float: left;
@@ -55,49 +51,24 @@ a, a:link, a:visited {
   padding: 0px;
   text-decoration: none;
 }
-
 .menu:hover {
   background-color: red;
 }
-
 .rightmenu {
   float:right;
 }
-
-#bottom {
-  position: absolute;
-  width:100%;
-  height:100px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-
-  bottom:0;
-  background:black;
-  text-align: center;
-  color: white;
-}
-
-
 /* 레이아웃 틀 */
-}
-#logo {
-    width: 240px;
-    height: 44px;
-    cursor: pointer;
-}
-
 #wrapper {
     position: relative;
     height: 100%;
 }
-
 #content {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     width: 460px;
+    height: auto;
 }
-
 /* 입력폼 */
 h3 {
     margin: 19px 0 8px;
@@ -105,8 +76,6 @@ h3 {
     font-size: 14px;
     font-weight: 700;
 }
-
-
 .box {
     display: block;
     width: 100%;
@@ -117,7 +86,6 @@ h3 {
     background: #fff;
     position: relative;
 }
-
 .int {
     display: block;
     position: relative;
@@ -127,82 +95,29 @@ h3 {
     background: #fff;
     font-size: 15px;
 }
-
 input {
     font-family: Arial, Helvetica, sans-serif;   
 }
-
 .box.int_id {
     padding-right: 110px;
 }
-
 .box.int_pass {
     padding-right: 40px;
 }
-
 .box.int_pass_check {
     padding-right: 40px;
 }
-
 .step_url {
-    /*@naver.com*/
     position: absolute;
     top: 16px;
     right: 13px;
     font-size: 15px;
     color: #8e8e8e;
 }
-
-
-.pswdImg {
-    width: 18px;
-    height: 20px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    margin-top: -10px;
-    cursor: pointer;
-}
-
-select {
-    width: 100%;
-    height: 29px;
-    font-size: 15px;
-    background: #fff url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50% no-repeat;
-    background-size: 20px 8px;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: start;
-    border: none;
-    cursor: default;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* 에러메세지 */
-
-.error_next_box {
-    margin-top: 9px;
-    font-size: 12px;
-    color: red;    
-    display: none;
-}
-
-#alertTxt {
-    position: absolute;
-    top: 19px;
-    right: 38px;
-    font-size: 12px;
-    color: red;
-    display: none;
-}
-
 /* 버튼 */
-
 .btn_area {
     margin: 30px 0 91px;
 }
-
 #btnJoin {
     width: 100%;
     padding: 21px 0 17px;
@@ -214,13 +129,30 @@ select {
     font-weight: 400;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+  margin: auto;
+  background-color: white;
+}
+td, th {
+  height: 50px;
+  border: 2px solid black;
+  text-align: center;
+  padding: 8px;
+  color: black;
+}
+#head {
+  background-color: red;
+  color: white;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script language="javascript">
- function checks() { 
+function checks() { 
 	 //값 불러오기 
 	 var getmId = document.getElementById("mId"); 
 	 var getmPw = document.getElementById("mPw"); 
@@ -230,7 +162,7 @@ select {
 	 var mId = getmId.value; 
 	 var mPw = getmPw.value; 
 	 var pwCheck = getPwCheck.value; 
-	 var mname = getmName.value; 
+	 var mName = getmName.value; 
 	 //유효성 검사 
 	 var regExp = /^[a-zA-Z0-9]{4,12}$/; 
 	 //id, password 
@@ -264,7 +196,7 @@ select {
 	 		return false; 
 	 		} 
 	 } 
- </script>
+</script>
 <script> 
 	$(document).ready(function () { 
 		$('#idCheck').on('click', function () { 
@@ -304,7 +236,7 @@ select {
 			<div id="wrapper">
 				<div id="content">
 
-					<label >이름</label>
+					<label>이름</label>
 						<span class="box int_name">
 							<input type="text" name="mName" id="mName" class="int">
 						</span><p/>
@@ -325,13 +257,40 @@ select {
 							<input type="password" id="password_check" class="int">
 						</span><p/>
 						
-					<p>멤버십</p>
-					<label>Bronze<input type="radio" name="Bronze" value="msCode"></label>
-					<label>Silver<input type="radio" name="Silver" value="msCode"></label>
-					<label>Gold<input type="radio" name="Gold" value="msCode"></label>
+					<p>멤버십</p>						
+					<table style="background-color: white;">
+						<tr>
+							<th>&nbsp;</th>
+							<th id="head"><input type="radio" id= "b" name="msCode" value="100">Bronze</th>
+							<th id="head"><input type="radio" id= "s" name="msCode" value="1000">Silver</th>
+							<th id="head"><input type="radio" id= "g" name="msCode" value="10000">Gold</th>
+						<tr>
+							<td width="100px">요금</td>
+							<td>8,000원</td>
+							<td>10,000원</td>
+							<td>12,000원</td>
+						<tr>
+							<td width="100px">HD</td>
+							<td>X</td>
+							<td>O</td>
+							<td>O</td>
+						<tr>
+							<td width="100px">UHD</td>
+							<td>X</td>
+							<td>X</td>
+							<td>O</td>
+						<tr>
+							<td width="100px">동시접속</td>
+							<td>1명</td>
+							<td>2명</td>
+							<td>4명</td>
+						<tr>
+							<td width="100px">무제한시청</td>
+							<td>O</td>
+							<td>O</td>
+							<td>O</td>
+					</table>
 
-
-				
 			<p/>
 				
 			<div class="btn_area">
@@ -340,18 +299,6 @@ select {
 				</div>
 			</div>
 		</form>
-				
-	<table id="bottom" width="100%" bgcolor='black'>
-		<tr height="5">
-			<td align="center"> 
-			<font color="white" size="2">
-			OTT Platform Web Site WATCHING  | 권문선, 백지혜, 임성섭 | Project Duration 2021.02.23 - 2021.03
-			| Vision Occupation Training School | Daejeon, Korea | 042-252-5963
-			
-			</font> 
-			</td>
-		</tr>
-	</table>
 	
 </body>
 </html>

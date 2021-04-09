@@ -3,6 +3,7 @@ package com.finalPj.testpj.dao;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -13,52 +14,58 @@ import com.finalPj.testpj.dto.MemberDTO;
 public class MemberDAOImpl implements MemberDAO {
 	
 	@Inject
-	private SqlSession sqlSession;
-	private static String namespace = "com.finalPj.testpj.memberMapper";
+	SqlSession sqlSession;
+	
+	private static final String nameSpace = "com.finalPj.testpj.MemberMapper";
 
-	@Override
-	public boolean memberLogin(MemberDTO dto) throws Exception {
-		String mname = sqlSession.selectOne(namespace + ".memberLogin", dto);
-		System.out.println(mname);
-		return  (mname == null) ? false : true;
-	}
-
+	// 회원가입
 	@Override
 	public void memberJoin(MemberDTO dto) throws Exception {
-		sqlSession.insert(namespace + ".memberJoin", dto);
-
+		sqlSession.insert(nameSpace + ".memberJoin", dto);
+	}
+	
+	// 로그인
+	@Override
+	public boolean memberLogin(MemberDTO dto) throws Exception {
+		String mName = sqlSession.selectOne(nameSpace + ".memberLogin", dto);
+		return (mName == null) ? false : true;
 	}
 
+	// 로그아웃
 	@Override
-	public MemberDTO memberDetail(String mid) throws Exception {
-		return sqlSession.selectOne(namespace + ".memberDetail", mid);
+	public void memberLogout(HttpSession session) throws Exception {
+		sqlSession.insert(nameSpace + ".memberLogout", session);
+		
+	}
+	
+	@Override
+	public MemberDTO memberDetail(String mId) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".memberDetail", mId);
 	}
 
 	@Override
 	public void memberEdit(MemberDTO dto) throws Exception {
-		sqlSession.update(namespace + ".memberEdit", dto);
-
+		sqlSession.update(nameSpace + ".memberEdit", dto);
 	}
 
 	@Override
-	public void memberDelete(String mid) throws Exception {
-		sqlSession.delete(namespace + ".memberDelete", mid);
-
+	public void memberDelete(String mId) throws Exception {
+		sqlSession.delete(nameSpace + ".memberDelete", mId);
 	}
 
 	@Override
 	public List<MemberDTO> memberFindId(MemberDTO dto) throws Exception {
-		return sqlSession.selectList(namespace + ".memberFindId", dto);
+		return sqlSession.selectList(nameSpace + ".memberFindId", dto);
 	}
 
 	@Override
 	public String memberFindPw(MemberDTO dto) throws Exception {
-		return sqlSession.selectOne(namespace + ".memberFindPw", dto);
+		return sqlSession.selectOne(nameSpace + ".memberFindPw", dto);
 	}
 
 	@Override
-	public int idCheck(String mid) throws Exception {
-		return sqlSession.selectOne(namespace + ".idCheck", mid);
+	public int idCheck(String mId) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".idCheck", mId);
 	}
 
 }

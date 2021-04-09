@@ -15,44 +15,8 @@
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-body {
-  background-color:black;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  margin:0px;
-}
-.navbar {
-  overflow: hidden;
-  padding:20px;
-  background-color: black;
-}
-.menu {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  float: left;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-.logo {
-  margin:10px 10px;
-  float: left;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-  padding: 0px;
-  text-decoration: none;
-}
-.menu:hover {
-  background-color: red;
-}
-.rightmenu {
-  float:right;
-}
 #bottom {
-  position: relative;
+  position: absolute;
   width:100%;
   height:100px;
   font-family: Arial, Helvetica, sans-serif;
@@ -61,41 +25,45 @@ body {
   background:black;
   text-align: center;
   color: white;
-  margin-top:100px;
 }
-.btn btn-lg btn-primary btn-block {
-  background-color: red;
+.btn_area {
+  margin: 10px;
+}
+#btnn {
+    width: 93%;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #F60101;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
 }
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
 .card {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 	
-	.form-signin .form-control {
-  		position: relative;
-  		height: auto;
-  		-webkit-box-sizing: border-box;
-     	-moz-box-sizing: border-box;
-        	 box-sizing: border-box;
-  		padding: 10px;
-  		font-size: 16px;
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
 	}
 </style>
 </head>
 <body>
 
-<div class="navbar">
-	 	<a  class="logo" href="/" ><img src="<spring:url value ='/resources/Logo/logo_red.JPG'/>" width="150px" height="50"></a>
-	  		  
+<%@include file="./template/top_before.jsp"%> 
 
-	  <div class="rightmenu">		 
-	   <a class="menu" href="/">멤버십 안내</a>
-	</div>
-	</div>
 	<br/>
 
 	<h1 align="center">Watching에서 다양한 콘텐츠를 만나보세요</h1>
@@ -109,16 +77,19 @@ body {
 		<div class="card-body">
       <form class="form-signin" method="POST" action="/member/login" name="LoginForm">
         <label for="inputEmail" class="sr-only">ID</label>
-        <input type="text" required id="mid" name="mid" class="form-control" placeholder="ID"  autofocus><BR>
+        <input type="text" required id="mId" name="mId" class="form-control" placeholder="ID"  autofocus><BR>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" required id="mpw" name="mpw" class="form-control" placeholder="Password" ><br>
+        <input type="password" required id="mPw" name="mPw" class="form-control" placeholder="Password" ><br>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> 아이디 저장
           </label>
         </div>
-        <button id="login_btn" class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
-        <button id="join_btn" class="btn btn-lg btn-danger btn-block" onclick="location.href='join'">회원가입</button>
+
+		<div>
+        	<button type="submit" class="btn_area" id="btnn">로그인</button>
+        	<button id="btnn" class="btn_area" onclick="location.href='/member/joinPage'">회원가입</button>
+		</div>
       </form>
       
 		</div>
@@ -138,10 +109,12 @@ body {
 			<td align="center"> 
 			<font color="white" size="2">
 			OTT Platform Web Site WATCHING  | 권문선, 백지혜, 임성섭 | Project Duration 2021.02.23 - 2021.03
-			| Vision Occupation Training School | Daejeon, Korea | 042-252-5963			
+			| Vision Occupation Training School | Daejeon, Korea | 042-252-5963
+			
 			</font> 
 			</td>
 		</tr>
+		
 		<c:if test="${aid == null }">
 		<tr>
 			<td>
@@ -149,6 +122,8 @@ body {
 			</td>
 		</tr>
 		</c:if>
+		
 	</table>
+	
 </body>
 </html>

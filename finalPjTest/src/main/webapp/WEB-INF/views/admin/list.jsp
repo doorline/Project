@@ -125,7 +125,7 @@
 	<%@include file="../template/adminTop.jsp"%>
 	
 	
-	<c:if test="${aid == null}">
+	<c:if test="${aId == null}">
 		<script>			
 			alert("관리자만 접근할 수 있습니다.");
 			document.location.href="/";
@@ -220,5 +220,5 @@
 	<button name="btnSearch" id="btnSearch" class="search_btn">검색</button>
 </div>
 </body>
-	<%@include file="/WEB-INF/views/bottom.jsp"%>
+	<%@include file="/WEB-INF/views/template/bottom.jsp"%>
 </html>
