@@ -112,6 +112,13 @@ public class ProductDTO {
 	public void setpUploadDate(Date pUploadDate) {
 		this.pUploadDate = pUploadDate;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductDTO [pCode=" + pCode + ", kCode=" + kCode + ", tCode=" + tCode + ", pName=" + pName + ", aId="
+				+ aId + ", pUphit=" + pUphit + ", pContent=" + pContent + ", pImg=" + pImg + ", pVod=" + pVod
+				+ ", pUploadDate=" + pUploadDate + "]";
+	}
 	
 	
 

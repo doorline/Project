@@ -38,4 +38,10 @@ public class FavoriteDAOImpl implements FavoriteDAO {
 		sql.delete(namespace + ".deletefav", fCode);
 	}
 
+	@Override
+	public int favCheck(int pCode) throws Exception {
+		
+		return sql.selectOne(namespace+".favCheck", pCode);
+	}
+
 }

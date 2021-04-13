@@ -16,5 +16,9 @@
 	<delete id="deletefav">
 		delete from FAVORITE where fCode=#{fCode}
 	</delete>
+	
+	<select id="favCheck" resultType="int">
+		select count(*) from FAVORITE where pCode=#{pCode}
+	</select>
 
 </mapper>

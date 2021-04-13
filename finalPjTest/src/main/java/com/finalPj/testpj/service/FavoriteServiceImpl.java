@@ -36,5 +36,11 @@ public class FavoriteServiceImpl implements FavoriteService {
 		fdao.deletefav(fCode);
 	}
 
+	@Override
+	public int favCheck(int pCode) throws Exception {
+		
+		return fdao.favCheck(pCode);
+	}
+
 
 }
