@@ -44,7 +44,7 @@ public class AdminController {
 		// 로그인 체크를 하기위한 메소드, 로그인 체크후 결과를 result 변수에 넣는다.
 		boolean result = adminservice.loginCheck(adto, session);
 		ModelAndView mav = new ModelAndView();
-		System.out.println(result);
+		//System.out.println(result);
 		if (result) {// 로그인이 성공했을시 출력되는 구문
 			mav.setViewName("redirect:/admin/list"); // 로그인이 성공했을시 이동하게되는 뷰의 이름
 			mav.addObject("aId", session.getAttribute(aId));

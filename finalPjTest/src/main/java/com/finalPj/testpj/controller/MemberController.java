@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,13 +68,16 @@ public class MemberController {
 	}
 
 	// 회원 정보
-	@RequestMapping("/detail") 
-	public ModelAndView memberDetail(@RequestParam String mId) throws Exception { 
+	@RequestMapping(value="/detail", method=RequestMethod.GET) 
+	public String memberDetail(Model model, HttpSession session) throws Exception { 
 		
-		ModelAndView mav = new
-		 ModelAndView(); mav.setViewName("/member/MemberDetail");
-		 mav.addObject("memberDetail", service.memberDetail(mId)); 
-		 return mav; 
+		String mId = (String) session.getAttribute("mId");
+		
+		MemberDTO mdto = service.memberDetail(mId);
+		model.addAttribute("mdto", mdto);
+		
+		return "/member/MemberDetail";
+
 		 }
 	
 	// 정보 수정 페이지 

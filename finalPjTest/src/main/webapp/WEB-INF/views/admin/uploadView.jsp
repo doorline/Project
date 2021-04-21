@@ -67,10 +67,10 @@
 	.w100{width:100px;}	
 </style>
 </head>
-	<%@include file="../template/header.jsp"%>
+	<%@include file="../template/adminTop.jsp"%>
 <body>
 	
-	<c:if test="${aid == null}">
+	<c:if test="${aId == null}">
 		<script>			
 			alert("관리자만 접근할 수 있습니다.");
 			document.location.href="/";

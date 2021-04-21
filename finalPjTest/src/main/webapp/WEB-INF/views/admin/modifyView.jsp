@@ -68,7 +68,7 @@
 	.w100{width:100px;}	
 </style>
 </head>
-	<%@include file="../template/header.jsp"%>
+	<%@include file="../template/adminTop.jsp"%>
 <body>
 	
 	<h1 style="margin:0 0 0 30px;">작품 수정</h1>
@@ -131,7 +131,7 @@
 		<div class="row">
 			<span class="b_menu">썸네일보기</span>
  			<span class="content">
- 				<img id="selectImg" src="/resources/ProductImg/${view.pImg}"/>
+ 				<img id="selectImg" src="/resources/ProductImg/${view.pImg}" style="width:200px;"/>
 				<script type="text/javascript">
 					function readURL(input){
 						if(input.files && input.files[0]){

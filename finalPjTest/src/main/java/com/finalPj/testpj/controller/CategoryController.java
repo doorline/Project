@@ -65,9 +65,9 @@ public class CategoryController {
 		
 		search = ctgService.listsearch(listkeyword);
 		
-		for(ProductDTO i:search) {
-			System.out.println(i.getpName());
-		}
+//		for(ProductDTO i:search) {
+//			System.out.println(i.getpName());
+//		}
 		
 		model.addAttribute("search", search);
 	}

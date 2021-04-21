@@ -76,7 +76,7 @@ public class ProductController {
 	@RequestMapping("uploadView")
 	public String uploadView(Model model, HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
-		model.addAttribute("aid", session.getAttribute("aid"));
+		model.addAttribute("aId", session.getAttribute("aId"));
 		
 		return "/admin/uploadView";
 	}
@@ -88,7 +88,7 @@ public class ProductController {
 			HttpServletRequest request) throws Exception{
 		
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
-		System.out.println(rootPath);
+		//System.out.println(rootPath);
 
 		String pImg = dataUpload(imgFile, rootPath);
 		String pVod = dataUpload(vodFile, rootPath);
@@ -104,7 +104,7 @@ public class ProductController {
 		//경로
 		
 		String originName = file.getOriginalFilename();
-		System.out.println(originName);
+		//System.out.println(originName);
 		UUID uuid = UUID.randomUUID();
 		//저장 파일 생성
 		String pdata = uuid.toString()+"_"+originName;
@@ -139,8 +139,8 @@ public class ProductController {
 		//수정전 이미지 파일명 가져오기
 		int pCode=dto.getpCode();
 		ProductDTO bfDto = productService.view(pCode);
-		System.out.println(bfDto.getpImg());
-		System.out.println(bfDto.getpVod());
+		//System.out.println(bfDto.getpImg());
+		//System.out.println(bfDto.getpVod());
 		
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
 		//이미지 변경
@@ -150,7 +150,7 @@ public class ProductController {
 			//이전 이미지 삭제
 			String filePath = rootPath+attachPath+bfDto.getpImg();
 			File bfFile = new File(filePath);
-			System.out.println(filePath);
+			//System.out.println(filePath);
 			dataDelete(bfFile);
 		}else {
 			//사진변경 안함
@@ -162,15 +162,15 @@ public class ProductController {
 			pVod = dataUpload(vodFile, rootPath);
 			//이전 영상 삭제
 			String filePath = rootPath+attachPath+bfDto.getpVod();
-			System.out.println(filePath);
+			//System.out.println(filePath);
 			File bfFile = new File(filePath);
 			dataDelete(bfFile);
 		}else {
 			//영상 변경 안함
 			pVod = bfDto.getpVod();
 		}
-		System.out.println(pImg);
-		System.out.println(pVod);
+		//System.out.println(pImg);
+		//System.out.println(pVod);
 		dto.setpImg(pImg);
 		dto.setpVod(pVod);
 		productService.modify(dto);
@@ -196,7 +196,7 @@ public class ProductController {
 		String[] pCodes = request.getParameterValues("pCodes");
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
 		//선택확인
-		for(String i : pCodes)System.out.println(Integer.parseInt(i));
+		//for(String i : pCodes)System.out.println(Integer.parseInt(i));
 		for(String i : pCodes) {
 			//파일삭제
 			ProductDTO delDto = productService.view(Integer.parseInt(i));

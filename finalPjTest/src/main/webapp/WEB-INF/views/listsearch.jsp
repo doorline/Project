@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="bodyStyle.css" rel="stylesheet" type="text/css" />
+<link href="/css/bodyStyle.css" rel="stylesheet" type="text/css" />
 <title>검색</title>
 <style>
 html, body {

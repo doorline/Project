@@ -59,7 +59,16 @@ public class MemberServiceImpl implements MemberService {
 	// 회원정보 보기
 	@Override
 	public MemberDTO memberDetail(String mId) throws Exception {
-		return dao.memberDetail(mId);
+		MemberDTO mdto = null;
+		
+		try {
+			mdto = dao.memberDetail(mId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mdto;
+
 	}
 
 	// 회원정보 수정
