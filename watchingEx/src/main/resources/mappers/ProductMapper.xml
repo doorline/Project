@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.watching.productMapper">
+	<select id="list" resultType="pDTO">
+		select * from product order by pId desc
+	</select>
+	
+	<select id="view" resultType="pDTO">
+		select * from product where pId=#{pId}
+	</select>
+	
+	<insert id="upload" parameterType="pDTO">
+		insert into product (pId, pUDate, pName, cId, tId, pUphit)
+		values (nextval(product_SEQ), sysdate(), #{pName}, #{cId}, #{tId}, 0)
+	</insert>
+	
+	<insert id="imgUpload" parameterType="pImgVO">
+		insert into product_img (pId, pImg) values (#{pId}, #{pImg})
+	</insert>
+	
+	<insert id="vodUpload" parameterType="pImgVO">
+		insert into product_vod (pId, pVod) values (#{pId}, #{pVod})
+	</insert>
+	
+	<update id="modify">
+		update product set pUDate=sysdate(), pName=#{pName}, cId=#{cId}, tId=#{tId}
+		where pId = #{pId}
+	</update>
+	
+	<delete id="delete">
+		delete from product where pId=#{pId}
+	</delete>
+	
+	<update id="uphit">
+		update product set pUphit = pUphit+1 where pId=#{pId}
+	</update>
+</mapper>
