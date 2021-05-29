@@ -64,4 +64,14 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public int getPId(String pName) throws Exception {
+		return pdao.getPId(pName);
+	}
+
+	@Override
+	public ProductImgVO viewImg(int pId) throws Exception {
+		return pdao.viewImg(pId);
+	}
+
 }

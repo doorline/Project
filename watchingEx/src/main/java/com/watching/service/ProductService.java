@@ -18,10 +18,17 @@ public interface ProductService {
 		public void delete(String pId) throws Exception;
 		//조회수
 		public void uphit(int pId) throws Exception;
+		//pId 가져오기
+		public int getPId(String pName) throws Exception;
+		
+		//VO관련
 		//이미지 업로드
 		public void imgUpload(ProductImgVO vo) throws Exception;
 		//동영상 업로드
 		public void vodUpload(ProductImgVO vo) throws Exception;
+		//view
+		public ProductImgVO viewImg(int pId) throws Exception;
+		
 		
 		//페이징처리
 		//public int cntList(HashMap<String, String> searchMap) throws Exception;

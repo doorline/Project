@@ -10,18 +10,15 @@
 		select * from product where pId=#{pId}
 	</select>
 	
+	<select id="getPId" parameterType="String" resultType="int">
+		select pId from product where pName=#{pName}
+	</select>
+	
 	<insert id="upload" parameterType="pDTO">
 		insert into product (pId, pUDate, pName, cId, tId, pUphit)
 		values (nextval(product_SEQ), sysdate(), #{pName}, #{cId}, #{tId}, 0)
 	</insert>
 	
-	<insert id="imgUpload" parameterType="pImgVO">
-		insert into product_img (pId, pImg) values (#{pId}, #{pImg})
-	</insert>
-	
-	<insert id="vodUpload" parameterType="pImgVO">
-		insert into product_vod (pId, pVod) values (#{pId}, #{pVod})
-	</insert>
 	
 	<update id="modify">
 		update product set pUDate=sysdate(), pName=#{pName}, cId=#{cId}, tId=#{tId}
@@ -35,4 +32,18 @@
 	<update id="uphit">
 		update product set pUphit = pUphit+1 where pId=#{pId}
 	</update>
+	
+	<!--ProductVO 관련 -->
+	<insert id="imgUpload" parameterType="pImgVO">
+		insert into product_img (pId, pImg) values (#{pId}, #{pImg})
+	</insert>
+	
+	<insert id="vodUpload" parameterType="pImgVO">
+		insert into product_vod (pId, pVod) values (#{pId}, #{pVod})
+	</insert>
+	
+	<select id="viewImg" resultType="pImgVO">
+		select img.pId, img.pImg, vod.pVod from product_img img 
+			join product_vod vod on img.pId=vod.pId where img.pId=#{pId}; 
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.watching.dao;
 
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -63,6 +65,16 @@ public class ProductDAOImpl implements ProductDAO {
 	public void vodUpload(ProductImgVO vo) throws Exception {
 		sqlSession.insert(namespace+".vodUpload",vo);
 		
+	}
+
+	@Override
+	public int getPId(String pName) throws Exception {
+		return sqlSession.selectOne(namespace+".getPId",pName);
+	}
+
+	@Override
+	public ProductImgVO viewImg(int pId) throws Exception {
+		return sqlSession.selectOne(namespace+".viewImg", pId);
 	}
 
 }

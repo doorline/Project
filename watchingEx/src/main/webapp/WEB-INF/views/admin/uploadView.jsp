@@ -87,6 +87,7 @@
 			<span class="b_menu">썸네일</span>
  			<span class="content">
  				<input type="file" name="imgFile" id="imgInput" onchange="readURL(this);" />
+ 				<%=request.getRealPath("/") %>
  			</span>
 		</div>
 		<div class="row">

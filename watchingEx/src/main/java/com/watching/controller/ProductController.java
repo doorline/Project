@@ -1,7 +1,6 @@
 package com.watching.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +47,7 @@ public class ProductController {
 	public String view(Model model, @RequestParam("pId")int pId) throws Exception{
 		
 		model.addAttribute("dto", pService.view(pId));
+		model.addAttribute("vo", pService.viewImg(pId));
 		
 		return "/admin/view";
 	}
@@ -65,14 +65,14 @@ public class ProductController {
 		
 		pService.upload(dto);
 		//pId를 가져오는 코드를 작성해야함
-		
+		int pId = pService.getPId(dto.getpName());
 		//이미지 및 영상 저장
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
 		String pImg = imgFile(imgFile, rootPath);
 		String pVod = vodFile(vodFile, rootPath);
 		
 		ProductImgVO vo = new ProductImgVO();
-		vo.setpId(dto.getpId());
+		vo.setpId(pId);
 		vo.setpImg(pImg);
 		vo.setpVod(pVod);
 		
